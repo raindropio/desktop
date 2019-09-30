@@ -55,6 +55,7 @@ module.exports = {
                     owner: 'raindropio',
                     name: 'desktop'
                 },
+                draft: false,
                 prerelease: false
             }
         }
