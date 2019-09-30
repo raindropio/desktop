@@ -34,3 +34,4 @@ jobs:
         electron-forge publish --platform darwin
       env:
         CI: true
+        
