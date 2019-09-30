@@ -3,18 +3,20 @@ name: Electron
 on:
   push:
     branches:
-      - release/production
+    - release/production
 
 jobs:
   build_on_mac:
     runs-on: macOS-latest
+    strategy:
+      matrix:
+        node-version: [8.x, 10.x, 12.x]
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
       with:
-        ref: electron
-    - uses: actions/setup-node@master
-      with:
-        node-version: 10.16
+        node-version: ${{ matrix.node-version }}
     - name: Add OSX certificate
       env:
         CERTIFICATE_OSX_P12: ${{ secrets.CERTIFICATE_OSX_P12 }}
