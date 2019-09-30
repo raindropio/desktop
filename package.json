@@ -1,0 +1,39 @@
+{
+	"name": "raindrop-desktop",
+	"productName": "Raindrop.io",
+	"version": "5.1.0",
+	"description": "Crossplatform bookmarking app",
+	"main": "src/index.js",
+	"scripts": {
+		"start": "electron-forge start",
+		"package": "electron-forge package",
+		"make": "electron-forge make",
+		"publish": "electron-forge publish"
+	},
+	"keywords": [],
+	"author": {
+		"name": "Rustem Mussabekov",
+		"email": "info@raindrop.io"
+	},
+	"license": "MIT",
+	"config": {
+		"forge": "./forge.config.js"
+	},
+	"dependencies": {
+		"electron-contextmenu-middleware": "1.x",
+		"electron-default-menu": "1.x",
+		"electron-input-menu": "2.1.x",
+		"electron-is-dev": "0.x",
+		"electron-json-storage": "2.x",
+		"electron-squirrel-startup": "1.x",
+		"electron-window-state": "3.x",
+		"update-electron-app": "^1.5.0"
+	},
+	"devDependencies": {
+		"@electron-forge/cli": "6.0.0-beta.45",
+		"@electron-forge/maker-dmg": "^6.0.0-beta.45",
+		"@electron-forge/maker-squirrel": "6.0.0-beta.45",
+		"@electron-forge/maker-zip": "6.0.0-beta.45",
+		"electron": "6.0.10"
+	}
+}
