@@ -1,8 +1,9 @@
 name: Electron
+
 on:
   push:
     branches:
-      - production
+      - release/production
 
 jobs:
   build_on_mac:
