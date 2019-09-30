@@ -1,26 +1,22 @@
-name: Node CI
-
-on: [push]
+name: Electron
+on:
+  push:
+    branches:
+      - production
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [8.x, 10.x, 12.x]
-
+  build_on_mac:
+    runs-on: macOS-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+    - uses: actions/checkout@master
       with:
-        node-version: ${{ matrix.node-version }}
-    - name: npm install, build, and test
+        ref: electron
+    - uses: actions/setup-node@master
+      with:
+        node-version: 10.16
+    - name: build
       run: |
-        npm install
-        npm run build --if-present
-        npm test
+        yarn
+        electron-forge publish
       env:
         CI: true
