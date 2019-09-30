@@ -7,6 +7,10 @@ module.exports = {
         appCopyright:       '© 2013-2019 Mussabekov Rustem',
         appBundleId:        'io.raindrop.macapp',
         osxSign:            true,
+        osxNotarize: {
+            appleId:            process.env['APPLE_ID'],
+            appleIdPassword:    process.env['APPLE_ID_PASSWORD']
+        },
 
         asar:               true,
         prune:              true,

@@ -14,9 +14,20 @@ jobs:
     - uses: actions/setup-node@master
       with:
         node-version: 10.16
+    - name: Add OSX certificate
+      env:
+        CERTIFICATE_OSX_P12: ${{ secrets.CERTIFICATE_OSX_P12 }}
+        CERTIFICATE_OSX_PASSWORD: ${{ secrets.CERTIFICATE_OSX_PASSWORD }}
+      run: |
+        chmod +x build/add-osx-cert.sh
+        ./build/add-osx-cert.sh
     - name: build
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        APPLE_ID: ${{ secrets.APPLE_ID }}
+        APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
       run: |
         yarn
-        electron-forge publish
+        electron-forge publish --platform darwin
       env:
         CI: true

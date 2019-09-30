@@ -10,7 +10,7 @@
 	},
 	"scripts": {
 		"dev": "electron-forge start",
-		"deploy_prod": "export $(cat .env | xargs) && electron-forge publish"
+		"deploy_prod": "git branch -f release/production master && git push --force origin release/production"
 	},
 	"keywords": [],
 	"author": {
