@@ -32,6 +32,3 @@ jobs:
       run: |
         yarn
         electron-forge publish --platform darwin
-      env:
-        CI: true
-        
