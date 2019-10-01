@@ -1,7 +1,7 @@
 {
 	"name": "raindrop-desktop",
 	"productName": "Raindrop.io",
-	"version": "5.1.41",
+	"version": "5.1.42",
 	"description": "Crossplatform bookmarking app",
 	"main": "src/index.js",
 	"repository": {
@@ -33,8 +33,8 @@
 	},
 	"devDependencies": {
 		"@electron-forge/cli": "6.0.0-beta.45",
+		"@electron-forge/maker-appx": "^6.0.0-beta.45",
 		"@electron-forge/maker-dmg": "^6.0.0-beta.45",
-		"@electron-forge/maker-squirrel": "6.0.0-beta.45",
 		"@electron-forge/maker-zip": "6.0.0-beta.45",
 		"@electron-forge/publisher-github": "^6.0.0-beta.45",
 		"electron": "6.0.10"

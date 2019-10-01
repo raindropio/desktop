@@ -54,6 +54,9 @@ module.exports = {
                     window: {size: {width: 780, height: 435}}
                 },
             }
+        },
+        {
+            name: '@electron-forge/maker-appx'
         }
     ],
     publishers: [
