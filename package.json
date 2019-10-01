@@ -1,7 +1,7 @@
 {
 	"name": "raindrop-desktop",
 	"productName": "Raindrop.io",
-	"version": "5.1.42",
+	"version": "5.1.43",
 	"description": "Crossplatform bookmarking app",
 	"main": "src/index.js",
 	"repository": {
@@ -10,6 +10,7 @@
 	},
 	"scripts": {
 		"dev": "electron-forge start",
+		"local": "electron-forge make --platform=darwin",
 		"deploy_prod": "git branch -f release/production master && git push --force origin release/production"
 	},
 	"keywords": [],

@@ -41,6 +41,7 @@ module.exports = {
         {
             name: '@electron-forge/maker-dmg',
             config: {
+                name:       'Raindrop',
                 background: './build/dmg@2x.png',
                 format:     'ULFO',
                 icon:       './build/icon.icns',
@@ -67,7 +68,7 @@ module.exports = {
                     owner: 'raindropio',
                     name: 'desktop'
                 },
-                draft: false,
+                draft: process.env['GITHUB_WORKFLOW'] ? false : true, //only github builds are publicly visible
                 prerelease: false
             }
         }
