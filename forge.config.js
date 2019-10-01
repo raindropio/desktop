@@ -6,18 +6,17 @@ module.exports = {
         appCategoryType:    'public.app-category.productivity',
         appCopyright:       '© 2013-2019 Mussabekov Rustem',
         appBundleId:        'io.raindrop.macapp',
-        osxSign: true,
+        osxSign: {
+            hardenedRuntime:    true,
+            'gatekeeper-assess':   false,
+            entitlements:       './build/entitlements.mac.plist',
+            'entitlements-inherit':'./build/entitlements.mac.plist'
+        },
         osxNotarize: {
             appleId:            process.env['APPLE_ID'],
             appleIdPassword:    process.env['APPLE_ID_PASSWORD']
         },
-        mac: {
-            hardenedRuntime:    true,
-            gatekeeperAssess:   false,
-            entitlements:       './build/entitlements.mac.plist',
-            entitlementsInherit:'./build/entitlements.mac.plist'
-        },
-
+        
         asar:               true,
         prune:              true,
         ignore: [
