@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
     packagerConfig: {
         icon:               './build/icon',
@@ -9,8 +11,8 @@ module.exports = {
         osxSign: {
             hardenedRuntime:    true,
             'gatekeeper-assess':   false,
-            entitlements:       './build/entitlements.mac.plist',
-            'entitlements-inherit':'./build/entitlements.mac.plist'
+            entitlements:       './build/mac/entitlements.mac.plist',
+            'entitlements-inherit':'./build/mac/entitlements.mac.plist'
         },
         osxNotarize: {
             appleId:            process.env['APPLE_ID'],
@@ -42,7 +44,7 @@ module.exports = {
             name: '@electron-forge/maker-dmg',
             config: {
                 name:       'Raindrop',
-                background: './build/dmg@2x.png',
+                background: './build/mac/dmg@2x.png',
                 format:     'ULFO',
                 icon:       './build/icon.icns',
                 iconSize:   128,
@@ -57,7 +59,13 @@ module.exports = {
             }
         },
         {
-            name: '@electron-forge/maker-appx'
+            name: '@electron-forge/maker-squirrel',
+            config: {
+                iconUrl:    'https://raindrop.io/favicon.ico',
+                loadingGif: path.resolve(__dirname, 'build', 'win', 'loadingGif.gif'),
+                setupIcon:  path.resolve(__dirname, 'build', 'icon.ico'),
+                setupExe:   'Raindrop'
+            }
         }
     ],
     publishers: [

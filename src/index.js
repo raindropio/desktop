@@ -1,7 +1,6 @@
-'use strict';
-if(require('electron-squirrel-startup')) return;
-
 const { app } = require('electron')
+if (require('electron-squirrel-startup')) return app.quit()
+
 const win = require('./window')
 require('update-electron-app')()
 

@@ -19,8 +19,8 @@ jobs:
         CERTIFICATE_OSX_P12: ${{ secrets.CERTIFICATE_OSX_P12 }}
         CERTIFICATE_OSX_PASSWORD: ${{ secrets.CERTIFICATE_OSX_PASSWORD }}
       run: |
-        chmod +x build/add-osx-cert.sh
-        ./build/add-osx-cert.sh
+        chmod +x build/mac/cert.sh
+        ./build/mac/cert.sh
     - name: install dependencies
       run: yarn
     - name: build
@@ -30,17 +30,17 @@ jobs:
         APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
       run: npx electron-forge publish --platform=darwin
   
-  # build_windows:
-  #   runs-on: windows-2019
-  #   steps:
-  #   - uses: actions/checkout@v1
-  #   - name: Use Node.js 10.x
-  #     uses: actions/setup-node@v1
-  #     with:
-  #       node-version: 10.x
-  #   - name: install dependencies
-  #     run: yarn
-  #   - name: build
-  #     env:
-  #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #     run: npx electron-forge publish --platform=win32
+  build_windows:
+    runs-on: windows-2019
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js 10.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 10.x
+    - name: install dependencies
+      run: yarn
+    - name: build
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: npx electron-forge publish --platform=win32
