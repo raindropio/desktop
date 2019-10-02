@@ -35,6 +35,7 @@ module.exports = {
 			backgroundColor: '#f6f6f6',
 
 			webPreferences: {
+				webviewTag: true,
 				nodeIntegration: true,
 				webSecurity: true,
 				scrollBounce: true,
@@ -47,6 +48,9 @@ module.exports = {
 			this.window.loadURL('http://dev.raindrop.io');
 		else*/
 			this.window.loadURL('https://app.raindrop.io/legacy/4');
+
+		if (isDev)
+			this.window.webContents.openDevTools();
 
 		this.window.webContents.on('will-navigate', this.handleURLChange);
 		this.window.webContents.on('new-window', function(e,url){

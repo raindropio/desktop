@@ -21,3 +21,14 @@ app.on('before-quit', function(){
 app.on('window-all-closed', function () {
 	app.quit()
 })
+
+app.on('web-contents-created', (event, contents) => {
+	contents.on('will-attach-webview', (event, webPreferences, params) => {
+		// Strip away preload scripts if unused or verify their location is legitimate
+		delete webPreferences.preload
+		delete webPreferences.preloadURL
+
+		// Disable Node.js integration
+		webPreferences.nodeIntegration = false
+	})
+})
