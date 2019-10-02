@@ -64,7 +64,7 @@ module.exports = {
                 iconUrl:    'https://raindrop.io/favicon.ico',
                 loadingGif: path.resolve(__dirname, 'build', 'win', 'loadingGif.gif'),
                 setupIcon:  path.resolve(__dirname, 'build', 'icon.ico'),
-                setupExe:   'Raindrop'
+                setupExe:   'RaindropInstaller.exe'
             }
         }
     ],
