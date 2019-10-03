@@ -1,7 +1,7 @@
 {
 	"name": "Raindrop.io",
 	"productName": "Raindrop.io",
-	"version": "5.1.5",
+	"version": "5.1.6",
 	"description": "Crossplatform bookmarking app",
 	"main": "src/index.js",
 	"repository": {
@@ -23,14 +23,11 @@
 		"forge": "./forge.config.js"
 	},
 	"dependencies": {
-		"electron-contextmenu-middleware": "1.x",
-		"electron-default-menu": "1.x",
-		"electron-input-menu": "2.1.x",
-		"electron-is-dev": "0.x",
-		"electron-json-storage": "2.x",
+		"electron-context-menu": "^0.15.0",
+		"electron-is-dev": "1.x",
 		"electron-squirrel-startup": "1.x",
-		"electron-window-state": "3.x",
-		"update-electron-app": "^1.5.0"
+		"electron-window-state": "5.x",
+		"update-electron-app": "1.5.x"
 	},
 	"devDependencies": {
 		"@electron-forge/cli": "6.0.0-beta.45",
@@ -38,6 +35,6 @@
 		"@electron-forge/maker-squirrel": "^6.0.0-beta.45",
 		"@electron-forge/maker-zip": "6.0.0-beta.45",
 		"@electron-forge/publisher-github": "^6.0.0-beta.45",
-		"electron": "6.0.10"
+		"electron": "6.0.x"
 	}
 }

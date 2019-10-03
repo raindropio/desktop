@@ -1,6 +1,7 @@
 const { BrowserWindow, shell } = require('electron')
 const isDev = require('electron-is-dev')
 const windowStateKeeper = require('electron-window-state')
+const contextMenu = require('electron-context-menu')
 const defaults = require('./defaults')
 
 module.exports = {
@@ -44,10 +45,14 @@ module.exports = {
 		});
 		mainWindowState.manage(this.window);
 
-		/*if (isDev)
-			this.window.loadURL('http://dev.raindrop.io');
-		else*/
-			this.window.loadURL('https://app.raindrop.io/legacy/4');
+		contextMenu({
+			window: this.window
+		})
+
+		if (isDev)
+			this.window.loadURL('http://dev.raindrop.io')
+		else
+			this.window.loadURL('https://app.raindrop.io/legacy/4')
 
 		if (isDev)
 			this.window.webContents.openDevTools();
