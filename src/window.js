@@ -1,4 +1,4 @@
-const { BrowserWindow, shell } = require('electron')
+const { BrowserWindow, shell, systemPreferences } = require('electron')
 const isDev = require('electron-is-dev')
 const windowStateKeeper = require('electron-window-state')
 const contextMenu = require('electron-context-menu')
@@ -30,10 +30,9 @@ module.exports = {
 			center: true,
 			acceptFirstMouse: true,
 			titleBarStyle: "hiddenInset",
-			vibrancy: "sidebar",//ultra-dark
 			plugins: true,
 			autoHideMenuBar: true,
-			backgroundColor: '#f6f6f6',
+			backgroundColor: systemPreferences.isDarkMode() ? '#303030' : '#f6f6f6',
 
 			webPreferences: {
 				webviewTag: true,
@@ -49,13 +48,13 @@ module.exports = {
 			window: this.window
 		})
 
-		if (isDev)
+		/*if (isDev)
 			this.window.loadURL('http://dev.raindrop.io')
-		else
+		else*/
 			this.window.loadURL('https://app.raindrop.io/legacy/4')
 
-		if (isDev)
-			this.window.webContents.openDevTools();
+		/*if (isDev)
+			this.window.webContents.openDevTools();*/
 
 		this.window.webContents.on('will-navigate', this.handleURLChange);
 		this.window.webContents.on('new-window', function(e,url){
@@ -104,7 +103,7 @@ module.exports = {
 	},
 
 	handleURLChange: function(e,url) {
-		const acceptedURLS = [/\/\/(dev\.|)raindrop\.io/];
+		const acceptedURLS = [/\/\/(app\.|dev\.|)raindrop\.io/];
 
 		var canNavigate = false;
 		for(var i in acceptedURLS)
