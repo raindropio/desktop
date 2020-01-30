@@ -13,10 +13,15 @@ module.exports = {
 		if (this.window) return;
 
 		//get defaults
-		let mainWindowState = windowStateKeeper({
-			defaultWidth: defaults.width,
-			defaultHeight: defaults.height
-		});
+		let mainWindowState = {}
+		
+		//could fail for some users, so trycatch
+		try{
+			mainWindowState = windowStateKeeper({
+				defaultWidth: defaults.width,
+				defaultHeight: defaults.height
+			})
+		}catch(e){}
 
 		var _this = this;
 
@@ -42,19 +47,20 @@ module.exports = {
 				//sandbox: true
 			}
 		});
-		mainWindowState.manage(this.window);
+
+		mainWindowState.manage && mainWindowState.manage(this.window);
 
 		contextMenu({
 			window: this.window
 		})
 
-		/*if (isDev)
+		if (isDev)
 			this.window.loadURL('http://dev.raindrop.io')
-		else*/
+		else
 			this.window.loadURL('https://app.raindrop.io/legacy/4')
 
-		/*if (isDev)
-			this.window.webContents.openDevTools();*/
+		if (isDev)
+			this.window.webContents.openDevTools();
 
 		this.window.webContents.on('will-navigate', this.handleURLChange);
 		this.window.webContents.on('new-window', function(e,url){
