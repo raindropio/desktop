@@ -20,7 +20,7 @@ app.on('web-contents-created', (e, contents) => {
             if (disposition == 'new-window') return
 
             shell.openExternal(url)
-        })
+		})
 	}
 
 	contents.on('will-attach-webview', (e, webPreferences, params) => {
@@ -32,5 +32,14 @@ app.on('web-contents-created', (e, contents) => {
 
 		// Disable Node.js integration
 		webPreferences.nodeIntegration = false
+	})
+})
+
+app.on('session-created', (session) => {
+	session.on('will-download', (e, item, contents) => {
+		if (item.getMimeType() == 'application/pdf' && item.getURL().includes('up.raindrop.io')){
+			e.preventDefault()
+			contents.executeJavaScript(`document.querySelector('iframe[src="${item.getURL()}"]').setAttribute('src', 'https://up.raindrop.io/pdfjs/web/viewer.html?file=${item.getURL()}')`)
+		}
 	})
 })
