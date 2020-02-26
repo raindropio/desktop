@@ -34,12 +34,3 @@ app.on('web-contents-created', (e, contents) => {
 		webPreferences.nodeIntegration = false
 	})
 })
-
-app.on('session-created', (session) => {
-	session.on('will-download', (e, item, contents) => {
-		if (item.getMimeType() == 'application/pdf' && item.getURL().includes('up.raindrop.io')){
-			e.preventDefault()
-			contents.executeJavaScript(`document.querySelector('iframe[src="${item.getURL()}"]').setAttribute('src', 'https://up.raindrop.io/pdfjs/web/viewer.html?file=${item.getURL()}')`)
-		}
-	})
-})
