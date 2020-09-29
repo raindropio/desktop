@@ -1,0 +1,133 @@
+const { app, shell, autoUpdater, Menu } = require('electron')
+
+var state = {
+    update: ''
+}
+
+function render() {
+    Menu.setApplicationMenu(
+        Menu.buildFromTemplate([
+            {
+                role: 'appMenu',
+                submenu: [
+                    { role: 'about' },
+                    ...[renderUpdate()],
+                    { type: 'separator' },
+                    ...(process.platform == 'darwin' ? [
+                        { role: 'services' },
+                        { type: 'separator' },
+                        { role: 'hide' },
+                        { role: 'hideothers' },
+                        { role: 'unhide' },
+                        { type: 'separator' },
+                    ] : []),
+                    { role: 'quit' }
+                ]
+            },
+            {
+                role: 'fileMenu'
+            },
+            {
+                role: 'editMenu'
+            },
+            {
+                role: 'viewMenu'
+            },
+            {
+                label: 'History',
+                submenu: [
+                    {
+                        label: 'Back',
+                        accelerator: 'CommandOrControl+[',
+                        click(m, { webContents }) {
+                            webContents.goBack()
+                        }
+                    },
+                    {
+                        label: 'Forward',
+                        accelerator: 'CommandOrControl+]',
+                        click(m, { webContents }) {
+                            webContents.goForward()
+                        }
+                    }
+                ]
+            },
+            {
+                role: 'windowMenu'
+            },
+            {
+                role: 'help',
+                submenu: [{
+                    label: 'Support',
+                    click() {
+                        shell.openExternal('https://help.raindrop.io')
+                    }
+                }]
+            }
+        ])
+    )
+}
+
+function renderUpdate() {
+    const { update='' } = state
+
+    switch(update) {
+        case 'checking-for-update':
+            return {
+                label: '⌛ Checking for Updates...'
+            }
+
+        case 'error':
+            return {
+                label: '⚠️ Can\'t check for updates!',
+                click: autoUpdater.checkForUpdates
+            }
+
+        case 'update-downloaded':
+            return {
+                label: 'Restart to Update',
+                click: autoUpdater.quitAndInstall
+            }
+
+        case 'update-not-available':
+            return {
+                label: 'No updates',
+                click: autoUpdater.checkForUpdates
+            }
+
+        default:
+            return {
+                label: 'Check for Updates...',
+                click: autoUpdater.checkForUpdates
+            }
+    }
+}
+
+module.exports = function() {
+    render()
+
+    autoUpdater.on('checking-for-update', ()=>{
+        state.update = 'checking-for-update'
+        render()
+    })
+
+    autoUpdater.on('error', ()=>{
+        state.update = 'error'
+        render()
+    })
+
+    autoUpdater.on('update-available', ()=>{
+        state.update = 'update-available'
+        render()
+    })
+
+    autoUpdater.on('update-downloaded', ()=>{
+        state.update = 'update-downloaded'
+        render()
+    })
+
+    autoUpdater.on('update-not-available', ()=>{
+        state.update = 'update-not-available'
+        render()
+    })
+}

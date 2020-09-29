@@ -1,126 +1,67 @@
-const { BrowserWindow, shell, systemPreferences } = require('electron')
+const { BrowserWindow, nativeTheme } = require('electron')
 const isDev = require('electron-is-dev')
-const windowStateKeeper = require('electron-window-state')
-const contextMenu = require('electron-context-menu')
-const defaults = require('./defaults')
+const windowState = require('electron-window-state')
 
-module.exports = {
-	window: null,
-	canClose: false,
-	minWidth: 370,
+class Window {
+	window = null
 
-	init: function() {
-		if (this.window) return;
+	size = {
+		defaultWidth: 1150,
+		defaultHeight: 600,
+		minWidth: 370,
+		minHeight: 450
+	}
 
+	constructor() {
 		//get defaults
-		let mainWindowState = {}
-		
 		//could fail for some users, so trycatch
-		try{
-			mainWindowState = windowStateKeeper({
-				defaultWidth: defaults.width,
-				defaultHeight: defaults.height
-			})
-		}catch(e){}
-
-		var _this = this;
+		let state = {}		
+		try{ state = windowState(this.size) }catch(e){}
 
 		this.window = new BrowserWindow({
-			x: mainWindowState.x,
-			y: mainWindowState.y,
-			width: mainWindowState.width,
-			height: mainWindowState.height,
-			minWidth: this.minWidth,
-			minHeight: 450,
+			//size & position
+			...this.size,
+			x: state.x,
+			y: state.y,
+			width: state.width,
+			height: state.height,
 			center: true,
+
+			//customizations
+			show: false,
 			acceptFirstMouse: true,
-			titleBarStyle: "hiddenInset",
-			plugins: true,
 			autoHideMenuBar: true,
-			backgroundColor: systemPreferences.isDarkMode() ? '#303030' : '#f6f6f6',
+			nativeWindowOpen: true,
 
+			//appearance
+			titleBarStyle: 'hidden',
+			backgroundColor: nativeTheme.shouldUseDarkColors ? '#303030' : 'white',
+
+			//security
+			plugins: true,
 			webPreferences: {
+				nodeIntegration: false,
 				webviewTag: true,
-				nodeIntegration: true,
-				webSecurity: true,
 				scrollBounce: true,
-				//sandbox: true
+				sandbox: true,
+				worldSafeExecuteJavaScript: true
 			}
-		});
-
-		mainWindowState.manage && mainWindowState.manage(this.window);
-
-		contextMenu({
-			window: this.window
 		})
 
+		//save window size & position
+		state.manage && state.manage(this.window)
+
+		//load page
 		if (isDev)
-			this.window.loadURL('http://dev.raindrop.io')
+			this.window.loadURL('http://localhost:2000')
 		else
-			this.window.loadURL('https://app.raindrop.io/legacy/4')
+			this.window.loadFile(`${__dirname}/../app-bundle/index.html`)
 
-		if (isDev)
-			this.window.webContents.openDevTools();
-
-		this.window.webContents.on('will-navigate', this.handleURLChange);
-		this.window.webContents.on('new-window', function(e,url){
-			e.preventDefault();
-			shell.openExternal(url);
-		});
-
-		this.window.on('close', function(e) {
-			if (process.platform == 'darwin'){
-				e.preventDefault();
-
-				setTimeout(function(){
-					if (!_this.canClose)
-						_this.window.hide();
-					else
-						_this.window.destroy();
-				},50);
-			}
-		});
-
-		this.window.on('closed', function(e) {
-			_this.window = null;
-		})
-
-		this.window.on('enter-full-screen', function(){
-			_this.macRemoveToolbarBounds(true);
-		});
-
-		this.window.on('leave-full-screen', function(){
-			_this.macRemoveToolbarBounds(false);
-		});
-	},
-
-	show: function() {
-		if (!this.window)
-			this.init()
-		else
-			this.window.show();
-	},
-
-	macRemoveToolbarBounds: function(have) {
-		if (have)
-			this.window.webContents.executeJavaScript("document.documentElement.classList.add('electron-full-screen')");
-		else
-			this.window.webContents.executeJavaScript("document.documentElement.classList.remove('electron-full-screen')");
-	},
-
-	handleURLChange: function(e,url) {
-		const acceptedURLS = [/\/\/(app\.|dev\.|)raindrop\.io/];
-
-		var canNavigate = false;
-		for(var i in acceptedURLS)
-			if (url.match(acceptedURLS[i])){
-				canNavigate = true;
-				break;
-			}
-
-		if (!canNavigate){
-			e.preventDefault();
-			shell.openExternal(url);
-		}
+		//events
+		this.window.once('ready-to-show', this.window.show)
 	}
+}
+
+module.exports = function() {
+	return new Window()
 }

@@ -10,8 +10,9 @@
 	},
 	"scripts": {
 		"dev": "electron-forge start",
-		"local": "electron-forge make --platform=darwin",
-		"deploy_prod": "git branch -f release/production master && git push --force origin release/production"
+		"build:mac": "electron-forge make --platform=darwin",
+		"build:win": "electron-forge make --platform=win32",
+		"deploy:prod": "git branch -f release/production master && git push --force origin release/production"
 	},
 	"keywords": [],
 	"author": {
@@ -23,18 +24,21 @@
 		"forge": "./forge.config.js"
 	},
 	"dependencies": {
-		"electron-context-menu": "0.16.x",
+		"@sentry/electron": "^2.0.1",
+		"electron-context-menu": "2.3.x",
 		"electron-is-dev": "1.x",
 		"electron-squirrel-startup": "1.x",
+		"electron-util": "^0.14.2",
 		"electron-window-state": "5.x",
+		"lodash": "^4.17.20",
 		"update-electron-app": "1.5.x"
 	},
 	"devDependencies": {
-		"@electron-forge/cli": "^6.0.0-beta.50",
-		"@electron-forge/maker-dmg": "^6.0.0-beta.50",
-		"@electron-forge/maker-squirrel": "^6.0.0-beta.50",
-		"@electron-forge/maker-zip": "^6.0.0-beta.50",
-		"@electron-forge/publisher-github": "^6.0.0-beta.50",
-		"electron": "9.0.0-beta.3"
+		"@electron-forge/cli": "^6.0.0-beta.53",
+		"@electron-forge/maker-dmg": "^6.0.0-beta.53",
+		"@electron-forge/maker-squirrel": "^6.0.0-beta.53",
+		"@electron-forge/maker-zip": "^6.0.0-beta.53",
+		"@electron-forge/publisher-github": "^6.0.0-beta.53",
+		"electron": "10.1.x"
 	}
 }

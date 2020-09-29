@@ -1,6 +1,16 @@
 const path = require('path')
+const util = require('util')
+const exec = util.promisify(require('child_process').exec)
 
 module.exports = {
+    hooks: {
+        generateAssets: async () => {
+            //build app from github repo
+            await exec('git clone https://github.com/raindropio/app.git -b release/production out/app')
+            await exec('cd out/app && yarn && yarn build:electron')
+            await exec('rm -rf app-bundle || true && cp -r out/app/dist/electron/prod app-bundle && rm -rf out/app')
+        },
+    },
     packagerConfig: {
         icon:               './build/icon',
 
@@ -26,9 +36,7 @@ module.exports = {
             /^out$/,
             /^\.gitignore$/,
             /^\.git$/,
-            /^\.idea$/,
             /^forge\.config\.js$/,
-            /^tsconfig\.json$/,
             /^yarn\.lock$/,
             /^\.DS_Store$/,
         ],

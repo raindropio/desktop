@@ -1,9 +1,9 @@
-# Build local
+# Build local copy
 ```
 yarn
-yarn local
+yarn build:mac
 ```
 Then check `out` folder
 
 # Deployment
-Run `yarn deploy_prod`
+Run `yarn deploy:prod`

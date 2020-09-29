@@ -1,24 +1,21 @@
 const { app } = require('electron')
-if (require('electron-squirrel-startup')) return app.quit()
+const sentry = require('./sentry')
+const update = require('./update')
+const platform = require('./platform')
+const menu = require('./menu')
+const contextMenu = require('./contextMenu')
+const navigation = require('./navigation')
+const window = require('./window')
 
-const win = require('./window')
-require('./webView')
-require('update-electron-app')()
+app.enableSandbox()
 
-//Start
 app.on('ready', function() {
-	win.init()
-})
+    sentry()
+    update()
+    platform()
+    menu()
+    contextMenu()
+    navigation()
 
-app.on('activate', function () {
-	win.show()
-})
-
-//Quit
-app.on('before-quit', function(){
-    win.canClose=true
-})
-
-app.on('window-all-closed', function () {
-	app.quit()
+    window()
 })
