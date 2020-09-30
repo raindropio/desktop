@@ -6,9 +6,12 @@ module.exports = {
     hooks: {
         generateAssets: async () => {
             //build app from github repo
+            await exec('shx rm -rf out/app')
             await exec('git clone https://github.com/raindropio/app.git -b release/production out/app')
             await exec('cd out/app && yarn && yarn build:electron')
-            await exec('rm -rf app-bundle || true && cp -r out/app/dist/electron/prod app-bundle && rm -rf out/app')
+            await exec('shx rm -rf app-bundle || true')
+            await exec('shx cp -r out/app/dist/electron/prod app-bundle')
+            await exec('shx rm -rf out/app')
         },
     },
     packagerConfig: {
