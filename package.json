@@ -1,7 +1,7 @@
 {
 	"name": "Raindrop.io",
 	"productName": "Raindrop.io",
-	"version": "5.2.35",
+	"version": "5.2.36",
 	"description": "Crossplatform bookmarking app",
 	"main": "src/index.js",
 	"repository": {
@@ -31,7 +31,7 @@
 		"electron-util": "^0.14.2",
 		"electron-window-state": "5.x",
 		"lodash": "^4.17.20",
-		"update-electron-app": "1.5.x"
+		"update-electron-app": "2.0.x"
 	},
 	"devDependencies": {
 		"@electron-forge/cli": "6.0.0-beta.52",
