@@ -1,7 +1,8 @@
-const { app, shell, autoUpdater, Menu } = require('electron')
+const { app, dialog, shell, autoUpdater, Menu } = require('electron')
 
 var state = {
-    update: ''
+    update: '',
+    updateError: null
 }
 
 function render() {
@@ -69,7 +70,7 @@ function render() {
 }
 
 function renderUpdate() {
-    const { update='' } = state
+    const { update='', updateError } = state
 
     switch(update) {
         case 'checking-for-update':
@@ -80,7 +81,10 @@ function renderUpdate() {
         case 'error':
             return {
                 label: '⚠️ Can\'t check for updates!',
-                click: autoUpdater.checkForUpdates
+                click() {
+                    autoUpdater.checkForUpdates()
+                    dialog.showErrorBox('Update error', updateError.toString())
+                }
             }
 
         case 'update-downloaded':
@@ -92,6 +96,12 @@ function renderUpdate() {
         case 'update-not-available':
             return {
                 label: 'No updates',
+                click: autoUpdater.checkForUpdates
+            }
+
+        case 'update-available':
+            return {
+                label: '🆕 New version available!',
                 click: autoUpdater.checkForUpdates
             }
 
@@ -111,8 +121,9 @@ module.exports = function() {
         render()
     })
 
-    autoUpdater.on('error', ()=>{
+    autoUpdater.on('error', e=>{
         state.update = 'error'
+        state.updateError = e
         render()
     })
 
