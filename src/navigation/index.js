@@ -18,11 +18,9 @@ function onWillNavigate(e, url) {
     }
 }
 
-function onNewWindow(e, url, frameName, disposition) {
+function onNewWindow(e, url) {
     e.preventDefault()
-
-    if (disposition != 'background-tab')
-        shell.openExternal(url)
+    shell.openExternal(url)
 }
 
 module.exports = function() {
