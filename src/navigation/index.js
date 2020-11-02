@@ -3,8 +3,27 @@ const { URL } = require('url')
 const oauth = require('./oauth')
 
 function onWillNavigate(e, url) {
-    const origin = new URL(e.sender.getURL())
-    const target = new URL(url)
+    let origin, target
+
+    //origin
+    try{
+        origin = new URL(e.sender.getURL())
+    }catch(e) {
+        if (String(e).includes('Invalid URL'))
+            origin = new URL('about:blank')
+        else
+            throw e
+    }
+
+    //target
+    try{
+        target = new URL(url)
+    }catch(e) {
+        if (String(e).includes('Invalid URL'))
+            target = new URL('about:blank')
+        else
+            throw e
+    }
         
     //oauth route
     if (oauth(e, url))

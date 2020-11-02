@@ -8,7 +8,9 @@ module.exports = function() {
     switch(process.platform) {
         //Hide instead closing of last window on darwin
         case 'darwin':
-            enforceMacOSAppLocation()
+            try{
+                enforceMacOSAppLocation()
+            }catch(e) {}
 
             app.on('activate', function () {
                 const windows = BrowserWindow.getAllWindows()
