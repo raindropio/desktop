@@ -1,7 +1,7 @@
 {
 	"name": "Raindrop.io",
 	"productName": "Raindrop.io",
-	"version": "5.2.46",
+	"version": "5.2.47",
 	"description": "Crossplatform bookmarking app",
 	"main": "src/index.js",
 	"repository": {
@@ -39,7 +39,7 @@
 		"@electron-forge/maker-squirrel": "6.0.0-beta.52",
 		"@electron-forge/maker-zip": "6.0.0-beta.52",
 		"@electron-forge/publisher-github": "6.0.0-beta.52",
-		"electron": "10.1.x",
+		"electron": "11.1.x",
 		"shx": "^0.3.2"
 	}
 }
