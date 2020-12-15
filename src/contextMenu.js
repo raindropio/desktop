@@ -3,10 +3,9 @@ const isDev = require('electron-is-dev')
 const contextMenu = require('electron-context-menu')
 
 module.exports = function() {
-	app.on('web-contents-created', (e, win) => {
+	app.on('web-contents-created', (e, window) => {
         contextMenu({
-            //instead of just window: win there is fix for electron 11
-            window: win.getType && win.getType() == 'webview' ? win : win.webContents || (win.getWebContentsId && remote.webContents.fromId(win.getWebContentsId())),
+            window,
             showCopyImageAddress: true,
             showSaveImageAs: true,
             showServices: true,

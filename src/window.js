@@ -39,6 +39,7 @@ class Window {
 
 			//security
 			plugins: true,
+			contextIsolation: true,
 			webPreferences: {
 				nodeIntegration: false,
 				webviewTag: true,
