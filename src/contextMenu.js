@@ -4,16 +4,17 @@ const contextMenu = require('electron-context-menu')
 
 module.exports = function() {
 	app.on('web-contents-created', (e, window) => {
-        contextMenu({
-            window,
-            showCopyImageAddress: true,
-            showSaveImageAs: true,
-            showServices: true,
-            showSaveLinkAs: true,
-            showInspectElement: isDev,
-            append: (def, params, browserWindow) => [
-                {label: "Reload", click: ()=>browserWindow.reload()}
-            ]
-        })
+        //doesnt work with electron 11 yet
+        // contextMenu({
+        //     window,
+        //     showCopyImageAddress: true,
+        //     showSaveImageAs: true,
+        //     showServices: true,
+        //     showSaveLinkAs: true,
+        //     showInspectElement: isDev,
+        //     append: (def, params, browserWindow) => [
+        //         {label: "Reload", click: ()=>browserWindow.reload()}
+        //     ]
+        // })
 	})
 }

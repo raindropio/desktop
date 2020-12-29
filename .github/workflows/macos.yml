@@ -10,10 +10,12 @@ jobs:
     runs-on: macOS-10.15 
     steps:
     - uses: actions/checkout@v1
+    
     - name: Use Node.js 12.x
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
+
     - name: Add OSX certificate
       env:
         CERTIFICATE_OSX_P12: ${{ secrets.CERTIFICATE_OSX_P12 }}
@@ -21,11 +23,20 @@ jobs:
       run: |
         chmod +x build/mac/cert.sh
         ./build/mac/cert.sh
+
     - name: install dependencies
       run: yarn
-    - name: build
+
+    - name: build x64
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         APPLE_ID: ${{ secrets.APPLE_ID }}
         APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
-      run: npx electron-forge publish --platform=darwin
+      run: npx electron-forge publish --platform=darwin --arch=x64
+
+    - name: build arm64
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        APPLE_ID: ${{ secrets.APPLE_ID }}
+        APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
+      run: npx electron-forge publish --platform=darwin --arch=arm64
