@@ -7,6 +7,9 @@ const contextMenu = require('./contextMenu')
 const navigation = require('./navigation')
 const window = require('./window')
 
+//fix webview fail for twitter
+app.commandLine.appendSwitch("disable-features", "CrossOriginOpenerPolicy")
+
 app.enableSandbox()
 
 app.on('ready', function() {
