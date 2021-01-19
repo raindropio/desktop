@@ -39,8 +39,9 @@ class Window {
 
 			//security
 			plugins: true,
-			contextIsolation: true,
 			webPreferences: {
+				contextIsolation: false,
+				enableRemoteModule: false,
 				nodeIntegration: false,
 				webviewTag: true,
 				scrollBounce: true,

@@ -36,7 +36,13 @@ module.exports = (e, url)=>{
 
     //create window
     const window = new BrowserWindow({
-        parent
+        parent,
+        webPreferences: {
+            contextIsolation: true,
+            nodeIntegration: false,
+            sandbox: true,
+            enableRemoteModule: false
+        }
     })
     centerWindow({ window })
 
