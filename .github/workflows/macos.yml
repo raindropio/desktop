@@ -11,10 +11,10 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     
-    - name: Use Node.js 15.x
+    - name: Use Node.js 12.x
       uses: actions/setup-node@v1
       with:
-        node-version: 15.x
+        node-version: 12.x
 
     - name: Add OSX certificate
       env:
@@ -32,11 +32,11 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         APPLE_ID: ${{ secrets.APPLE_ID }}
         APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
-      run: npx electron-forge publish --platform=darwin --arch=x64
+      run: yarn electron-forge publish --platform=darwin --arch=x64
 
     - name: build arm64
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         APPLE_ID: ${{ secrets.APPLE_ID }}
         APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
-      run: npx electron-forge publish --platform=darwin --arch=arm64
+      run: yarn electron-forge publish --platform=darwin --arch=arm64

@@ -19,4 +19,4 @@ jobs:
     - name: build
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: npx electron-forge publish --platform=win32
+      run: yarn electron-forge publish --platform=win32
