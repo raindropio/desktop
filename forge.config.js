@@ -32,6 +32,12 @@ module.exports = {
             appleId:            process.env['APPLE_ID'],
             appleIdPassword:    process.env['APPLE_ID_PASSWORD']
         },
+
+        //deeplink
+        protocols:[{
+            name: 'Raindrop-io-deeplink',
+            schemes: ['rnio']
+        }],
         
         asar:               true,
         prune:              true,

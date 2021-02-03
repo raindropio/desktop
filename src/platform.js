@@ -6,6 +6,21 @@ const { enforceMacOSAppLocation } = require('electron-util')
 
 module.exports = function() {
     switch(process.platform) {
+        //Prevent multiple copies, in case of run of second instance bring main app to front
+        case 'win32':
+            if (!app.requestSingleInstanceLock())
+                return app.quit()
+            else
+                app.on('second-instance', () => {
+                    const windows = BrowserWindow.getAllWindows()
+                    if (!windows.length) return
+
+                    if (windows[0].isMinimized())
+                        windows[0].restore()
+                    windows[0].focus()
+                })            
+        break
+        
         //Hide instead closing of last window on darwin
         case 'darwin':
             try{

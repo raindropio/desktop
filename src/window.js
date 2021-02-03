@@ -70,7 +70,7 @@ class Window {
 			return false
 		}
 
-		this.window.webContents.executeJavaScript(`location.hash='${path}'`)
+		this.window.webContents.executeJavaScript(`location.hash='#${path}'`)
 	}
 }
 

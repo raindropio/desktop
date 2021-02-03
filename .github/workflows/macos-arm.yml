@@ -32,4 +32,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         APPLE_ID: ${{ secrets.APPLE_ID }}
         APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
-      run: yarn electron-forge publish --platform=darwin --arch=arm64
+      run: DEBUG=electron-packager yarn electron-forge publish --platform=darwin --arch=arm64
