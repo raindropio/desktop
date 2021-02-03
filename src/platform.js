@@ -1,7 +1,7 @@
 /*
     Platform specific logic
 */
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, autoUpdater } = require('electron')
 const { enforceMacOSAppLocation } = require('electron-util')
 
 module.exports = function() {
@@ -43,6 +43,11 @@ module.exports = function() {
             
             app.on('window-all-closed', function () {
                 app.quit()
+            })
+
+            autoUpdater.on('update-downloaded', function () {
+                //fix restart option for updates
+                _quiting = true
             })
         break
     }

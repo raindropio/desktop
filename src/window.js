@@ -46,7 +46,7 @@ class Window {
 				webviewTag: true,
 				scrollBounce: true,
 				sandbox: true,
-				worldSafeExecuteJavaScript: true
+				worldSafeExecuteJavaScript: true,
 			}
 		})
 
@@ -61,6 +61,16 @@ class Window {
 
 		//events
 		this.window.once('ready-to-show', this.window.show)
+	}
+
+	setPath = (path)=>{
+		try{
+			new URL(path, 'http://localhost')
+		} catch(e) {
+			return false
+		}
+
+		this.window.webContents.executeJavaScript(`location.hash='${path}'`)
 	}
 }
 

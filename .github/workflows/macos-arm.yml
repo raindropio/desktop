@@ -27,9 +27,9 @@ jobs:
     - name: install dependencies
       run: yarn
 
-    - name: build x64
+    - name: build arm64
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         APPLE_ID: ${{ secrets.APPLE_ID }}
         APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
-      run: yarn electron-forge publish --platform=darwin --arch=x64
+      run: yarn electron-forge publish --platform=darwin --arch=arm64

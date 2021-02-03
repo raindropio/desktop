@@ -1,6 +1,5 @@
 const { app, shell } = require('electron')
 const { URL } = require('url')
-const oauth = require('./oauth')
 
 function onWillNavigate(e, url) {
     let origin, target
@@ -25,10 +24,6 @@ function onWillNavigate(e, url) {
             throw e
     }
         
-    //oauth route
-    if (oauth(e, url))
-        return
-
     //external link
     if (origin.host != target.host ||
         origin.protocol != target.protocol){
