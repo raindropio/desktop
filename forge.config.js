@@ -1,7 +1,6 @@
 const path = require('path')
 const util = require('util')
 const exec = util.promisify(require('child_process').exec)
-const argv = require('minimist')(process.argv.slice(2))
 
 module.exports = {
     hooks: {
@@ -60,8 +59,8 @@ module.exports = {
         },
         {
             name: '@electron-forge/maker-dmg',
-            config: {
-                name:       'Raindrop'+((argv.arch=='x64' || !argv.arch) ? '' : `-${argv.arch}`),
+            config: arch=>({
+                name:       `Raindrop-${arch}`,
                 background: './build/mac/dmg@2x.png',
                 format:     'ULFO',
                 icon:       './build/icon.icns',
@@ -74,7 +73,7 @@ module.exports = {
                 additionalDMGOptions: {
                     window: {size: {width: 780, height: 435}}
                 },
-            }
+            })
         },
         {
             name: '@electron-forge/maker-squirrel',

@@ -1,4 +1,4 @@
-const { app, dialog, shell, autoUpdater, Menu } = require('electron')
+const { dialog, shell, autoUpdater, Menu } = require('electron')
 
 var state = {
     update: '',
@@ -32,7 +32,27 @@ function render() {
                 role: 'editMenu'
             },
             {
-                role: 'viewMenu'
+                label: 'View',
+                submenu: [
+                    { role: 'reload' },
+                    { role: 'forceReload' },
+                    { role: 'toggleDevTools' },
+                    { type: 'separator' },
+                    { role: 'resetZoom' },
+                    { role: 'zoomIn' },
+                    //fix on macos
+                    { 
+                        role: 'zoomin', 
+                        accelerator: 'CommandOrControl+=',
+                        visible: false,
+                        enabled: true,
+                    },
+                    { role: 'zoomOut' },
+                    ...(process.platform=='darwin' ? [
+                        { type: 'separator' },
+                        { role: 'togglefullscreen' }
+                    ] : [])
+                ]
             },
             {
                 label: 'History',
