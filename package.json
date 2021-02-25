@@ -1,7 +1,7 @@
 {
 	"name": "Raindrop.io",
 	"productName": "Raindrop.io",
-	"version": "5.2.60",
+	"version": "1.0.0",
 	"description": "Crossplatform bookmarking app",
 	"main": "src/index.js",
 	"repository": {

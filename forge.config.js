@@ -1,13 +1,26 @@
 const path = require('path')
 const util = require('util')
 const exec = util.promisify(require('child_process').exec)
+const fs = require('fs')
+
+function updateVersion(version) {
+    const package = fs.readFileSync(`${__dirname}/package.json`, 'utf-8')
+    fs.writeFileSync(`${__dirname}/package.json`, package.replace(/version": "(.*)"/i, `version": "${version}"`), 'utf-8')
+}
 
 module.exports = {
     hooks: {
         generateAssets: async () => {
-            //build app from github repo
+            //get app repo
             await exec('shx rm -rf out/app')
             await exec('git clone https://github.com/raindropio/app.git -b release/production out/app')
+
+            //update version
+            updateVersion(
+                JSON.parse(fs.readFileSync(`${__dirname}/out/app/package.json`, 'utf-8')).version
+            )
+
+            //build app
             await exec('cd out/app && yarn && yarn build:electron')
             await exec('shx rm -rf app-bundle || true')
             await exec('shx cp -r out/app/dist/electron/prod app-bundle')
