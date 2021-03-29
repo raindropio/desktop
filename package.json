@@ -26,7 +26,7 @@
 	"dependencies": {
 		"@sentry/electron": "^2.0.1",
 		"electron-context-menu": "2.5.x",
-		"electron-is-dev": "1.x",
+		"electron-is-dev": "2.x",
 		"electron-squirrel-startup": "1.x",
 		"electron-util": "^0.14.2",
 		"electron-window-state": "5.x",
@@ -39,7 +39,7 @@
 		"@electron-forge/maker-squirrel": "6.0.0-beta.54",
 		"@electron-forge/maker-zip": "6.0.0-beta.54",
 		"@electron-forge/publisher-github": "6.0.0-beta.54",
-		"electron": "11.3.x",
+		"electron": "12.0.x",
 		"shx": "^0.3.2"
 	}
 }

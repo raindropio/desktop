@@ -543,10 +543,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.31.tgz#72286bd33d137aa0d152d47ec7c1762563d34055"
   integrity sha512-vFHy/ezP5qI0rFgJ7aQnjDXwAMrG0KqqIH7tQG5PPv3BWBayOPIQNBjVc/P6hhdZfMx51REc6tfDNXHUio893g==
 
-"@types/node@^12.0.12":
-  version "12.20.4"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.20.4.tgz#73687043dd00fcb6962c60fbf499553a24d6bdf2"
-  integrity sha512-xRCgeE0Q4pT5UZ189TJ3SpYuX/QGl6QIAOAIeDSbAVAd2gX1NxSZup4jNVK7cxIeP8KDSbJgcckun495isP1jQ==
+"@types/node@^14.6.2":
+  version "14.14.37"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.37.tgz#a3dd8da4eb84a996c36e331df98d82abd76b516e"
+  integrity sha512-XYmBiy+ohOR4Lh5jE379fV2IU+6Jn4g5qASinhitfyO71b/sCo6MKsMLF5tc7Zf2CE8hViVQyYSobJNke8OvUw==
 
 "@types/responselike@*", "@types/responselike@^1.0.0":
   version "1.0.0"
@@ -1230,15 +1230,20 @@ electron-installer-dmg@^3.0.0:
   optionalDependencies:
     appdmg "^0.6.0"
 
-electron-is-dev@1.x, electron-is-dev@^1.1.0, electron-is-dev@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/electron-is-dev/-/electron-is-dev-1.2.0.tgz#2e5cea0a1b3ccf1c86f577cee77363ef55deb05e"
-  integrity sha512-R1oD5gMBPS7PVU8gJwH6CtT0e6VSoD0+SzSnYpNm+dBkcijgA+K7VAMHDfnRq/lkKPZArpzplTW6jfiMYosdzw==
+electron-is-dev@2.x:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/electron-is-dev/-/electron-is-dev-2.0.0.tgz#833487a069b8dad21425c67a19847d9064ab19bd"
+  integrity sha512-3X99K852Yoqu9AcW50qz3ibYBWY79/pBhlMCab8ToEWS48R0T9tyxRiQhwylE7zQdXrMnx2JKqUJyMPmt5FBqA==
 
 electron-is-dev@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/electron-is-dev/-/electron-is-dev-0.3.0.tgz#14e6fda5c68e9e4ecbeff9ccf037cbd7c05c5afe"
   integrity sha1-FOb9pcaOnk7L7/nM8DfL18BcWv4=
+
+electron-is-dev@^1.1.0, electron-is-dev@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/electron-is-dev/-/electron-is-dev-1.2.0.tgz#2e5cea0a1b3ccf1c86f577cee77363ef55deb05e"
+  integrity sha512-R1oD5gMBPS7PVU8gJwH6CtT0e6VSoD0+SzSnYpNm+dBkcijgA+K7VAMHDfnRq/lkKPZArpzplTW6jfiMYosdzw==
 
 electron-notarize@^1.0.0:
   version "1.0.0"
@@ -1335,13 +1340,13 @@ electron-winstaller@^4.0.1:
     lodash.template "^4.2.2"
     temp "^0.9.0"
 
-electron@11.3.x:
-  version "11.3.0"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-11.3.0.tgz#87e8528fd23ae53b0eeb3a738f1fe0a3ad27c2db"
-  integrity sha512-MhdS0gok3wZBTscLBbYrOhLaQybCSAfkupazbK1dMP5c+84eVMxJE/QGohiWQkzs0tVFIJsAHyN19YKPbelNrQ==
+electron@12.0.x:
+  version "12.0.2"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-12.0.2.tgz#d92be205f1937627bd6718aad44ac161382b4c2d"
+  integrity sha512-14luh9mGzfL4e0sncyy0+kW37IU7Y0Y1tvI97FDRSW0ZBQxi5cmAwSs5dmPmNBFBIGtzkaGaEB01j9RjZuCmow==
   dependencies:
     "@electron/get" "^1.0.1"
-    "@types/node" "^12.0.12"
+    "@types/node" "^14.6.2"
     extract-zip "^1.0.3"
 
 emoji-regex@^8.0.0:

@@ -36,6 +36,7 @@ class Window {
 			//appearance
 			titleBarStyle: 'hidden',
 			backgroundColor: nativeTheme.shouldUseDarkColors ? '#303030' : 'white',
+			fullscreenable: process.platform == 'darwin',
 
 			//security
 			plugins: true,
