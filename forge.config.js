@@ -96,6 +96,19 @@ module.exports = {
                 setupIcon:  path.resolve(__dirname, 'build', 'icon.ico'),
                 setupExe:   'RaindropInstaller.exe'
             }
+        },
+        {
+            name: '@electron-forge/maker-appx',
+            config: {
+                verbose: true,
+                identityName: '19059Raindrop.io.Raindrop.io',
+                publisher: 'CN=49F50AA2-1546-4D45-BF61-BD9D748E1746',
+                publisherDisplayName: 'Raindrop.io',
+                packageDescription: 'All-in-one bookmark manager',
+                assets: path.resolve(__dirname, 'build', 'win', 'appx', 'assets'),
+                packageBackgroundColor: '#0F0F47',
+                devCert: path.resolve(__dirname, 'build', 'win', 'appx', 'default.pfx'),
+            }
         }
     ],
     publishers: [
