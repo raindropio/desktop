@@ -12,7 +12,7 @@ function render() {
                 role: 'appMenu',
                 submenu: [
                     { role: 'about' },
-                    ...[renderUpdate()],
+                    ...(process.windowsStore ? [] : [renderUpdate()]),
                     { type: 'separator' },
                     ...(process.platform == 'darwin' ? [
                         { role: 'services' },

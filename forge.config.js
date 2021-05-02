@@ -108,6 +108,18 @@ module.exports = {
         //         assets: path.resolve(__dirname, 'build', 'win', 'appx', 'assets'),
         //         packageBackgroundColor: '#0F0F47',
         //         devCert: path.resolve(__dirname, 'build', 'win', 'appx', 'default.pfx'),
+        //         finalSay: async function() {
+        //             const appxmanifest = path.resolve(__dirname, 'out', 'make', 'appx', 'x64', 'pre-appx', 'AppXManifest.xml')
+        //             const xml = fs.readFileSync(appxmanifest, 'utf-8')
+        //             fs.writeFileSync(
+        //                 appxmanifest, 
+        //                 xml
+        //                     .replace('</Capabilities>', '<Capability Name="internetClient"/></Capabilities>'),
+        //                     // .replace('runFullTrust', 'internetClient')
+        //                     // .replace('Windows.FullTrustApplication', 'Raindrop.io.App'), 
+        //                 'utf-8'
+        //             )
+        //         }
         //     }
         // }
     ],
