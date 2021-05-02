@@ -19,8 +19,8 @@ module.exports = function() {
 			showServices: true,
 			showSaveLinkAs: true,
 			showInspectElement: isDev,
-			append: (def, params, browserWindow) => [
-				{label: "Reload", click: ()=>browserWindow.reload()}
+			append: () => [
+				{label: "Reload", click: contents.reload}
 			]
 		})
 	})

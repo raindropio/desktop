@@ -28,7 +28,7 @@
 		"electron-context-menu": "2.5.x",
 		"electron-is-dev": "2.x",
 		"electron-squirrel-startup": "1.x",
-		"electron-util": "^0.14.2",
+		"electron-util": "0.15.x",
 		"electron-window-state": "5.x",
 		"lodash": "^4.17.20",
 		"update-electron-app": "2.0.x"
