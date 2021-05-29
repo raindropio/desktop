@@ -42,10 +42,17 @@ module.exports = function() {
             app.on('browser-window-created', function (e, window) {
                 if (_firstWin){
                     window.on('close', function(e) {
+                        if (this.isFullScreen())
+                            this.setFullScreen(false)
+                        
                         if (!_quiting) {
                             e.preventDefault()
                             this.hide()
                         }
+                    })
+
+                    window.on('leave-full-screen', function() {
+                        this.hide()
                     })
 
                     _firstWin = false
