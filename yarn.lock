@@ -135,7 +135,7 @@
     "@malept/cross-spawn-promise" "^1.1.0"
     fs-extra "^9.0.1"
 
-"@electron-forge/maker-appx@^6.0.0-beta.54":
+"@electron-forge/maker-appx@6.0.0-beta.54":
   version "6.0.0-beta.54"
   resolved "https://registry.yarnpkg.com/@electron-forge/maker-appx/-/maker-appx-6.0.0-beta.54.tgz#0b3a18ad1be6d989f355f2b345126b776aabf447"
   integrity sha512-8gzJV6CrOyAWJA1xIx3OhompKwW5amcV2VH3s9IjLu3VWl49TtdLzm0BRrlioRrXpdFibWBshbA2ZYzIYIUpCQ==
@@ -1265,16 +1265,16 @@ ecc-jsbn@~0.1.1:
     jsbn "~0.1.0"
     safer-buffer "^2.1.0"
 
-electron-context-menu@2.5.x:
-  version "2.5.2"
-  resolved "https://registry.yarnpkg.com/electron-context-menu/-/electron-context-menu-2.5.2.tgz#7f2383f011d0d53f282300e0d80b44e2f64c16a7"
-  integrity sha512-1cEQR6fA9ktFsRBc+eXPwvrOgAPytUD7rUV4iBAA5zTrLAPKokJ23xeMjcK2fjrDPrlFRBxcLz0KP+GUhMrSCQ==
+electron-context-menu@3.1.x:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/electron-context-menu/-/electron-context-menu-3.1.1.tgz#109884e79df293f7e85effcbdbbe45d362987d94"
+  integrity sha512-LJhwaKf6XHwk2LQ5SdwoGNODoA8lRwks9bbEeAqqMf4e3hsrT7pZtX6MaHKYNFZKxF14JjI/VR+VRjGvxmaQoA==
   dependencies:
     cli-truncate "^2.1.0"
-    electron-dl "^3.1.0"
-    electron-is-dev "^1.2.0"
+    electron-dl "^3.2.1"
+    electron-is-dev "^2.0.0"
 
-electron-dl@^3.1.0:
+electron-dl@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/electron-dl/-/electron-dl-3.2.1.tgz#244a1316c663691f70e8aa4515cd1a401b4b5690"
   integrity sha512-k5DFjocJlXbrjshO1zeWe/Gz7HkGwCgnehHPemiyzN2B/LfLlnbIX7sCj5F+huTwZ2l+nQehTI4IR37xvCn6FQ==
@@ -1294,7 +1294,7 @@ electron-installer-dmg@^3.0.0:
   optionalDependencies:
     appdmg "^0.6.0"
 
-electron-is-dev@2.x:
+electron-is-dev@2.x, electron-is-dev@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/electron-is-dev/-/electron-is-dev-2.0.0.tgz#833487a069b8dad21425c67a19847d9064ab19bd"
   integrity sha512-3X99K852Yoqu9AcW50qz3ibYBWY79/pBhlMCab8ToEWS48R0T9tyxRiQhwylE7zQdXrMnx2JKqUJyMPmt5FBqA==
@@ -1304,7 +1304,7 @@ electron-is-dev@^0.3.0:
   resolved "https://registry.yarnpkg.com/electron-is-dev/-/electron-is-dev-0.3.0.tgz#14e6fda5c68e9e4ecbeff9ccf037cbd7c05c5afe"
   integrity sha1-FOb9pcaOnk7L7/nM8DfL18BcWv4=
 
-electron-is-dev@^1.1.0, electron-is-dev@^1.2.0:
+electron-is-dev@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/electron-is-dev/-/electron-is-dev-1.2.0.tgz#2e5cea0a1b3ccf1c86f577cee77363ef55deb05e"
   integrity sha512-R1oD5gMBPS7PVU8gJwH6CtT0e6VSoD0+SzSnYpNm+dBkcijgA+K7VAMHDfnRq/lkKPZArpzplTW6jfiMYosdzw==
@@ -1377,10 +1377,10 @@ electron-squirrel-startup@1.x:
   dependencies:
     debug "^2.2.0"
 
-electron-util@0.15.x:
-  version "0.15.1"
-  resolved "https://registry.yarnpkg.com/electron-util/-/electron-util-0.15.1.tgz#caf77b50fbaaa03fba2dc3ffab70c774165c47e7"
-  integrity sha512-Kuz1e+WH/QRUuVcbhY3BiE9UYRFMi4y76YId0AyQU1mBjWb6HcRBCq4gKhILXuLXSD3IWGvYhhPpeJSusWr0zw==
+electron-util@0.17.x:
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/electron-util/-/electron-util-0.17.0.tgz#9cb27a0a583a9ecbb10821702b4a705b6e69f196"
+  integrity sha512-61+NEPdIN68EBC9XDPNAKs14HlPdc7HsL6lfQ+QTiya+3BMzayBqUsvN1LrT7IoGpPuuZns+iaCKf1N78dEF+w==
   dependencies:
     electron-is-dev "^1.1.0"
     new-github-issue-url "^0.2.1"
@@ -1419,10 +1419,10 @@ electron-winstaller@^4.0.1:
     lodash.template "^4.2.2"
     temp "^0.9.0"
 
-electron@12.0.x:
-  version "12.0.6"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-12.0.6.tgz#2d72fa5a7db553dca3a771b22aa13a676122b4af"
-  integrity sha512-+fqhpdG6Fd6LzsizMdaSPC1I8tfsMT8/7fsYBgABED3hEWdus/rt6CQ54P3/EWZyQebtyHR6HXtlofUqKMV3KQ==
+electron@13.1.x:
+  version "13.1.9"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-13.1.9.tgz#668e2632b81e9fa21edfd32876282d3e2ff7fd76"
+  integrity sha512-By4Zb72XNQLrPb70BXdIW3NtEHFwybP5DIQjohnCxOYONq5vojuHjNcTuWnBgMvwQ2qwykk6Tw5EwF2Pt0CWjA==
   dependencies:
     "@electron/get" "^1.0.1"
     "@types/node" "^14.6.2"
