@@ -34,7 +34,7 @@ class Window {
 			nativeWindowOpen: true,
 
 			//appearance
-			titleBarStyle: 'hidden',
+			titleBarStyle: process.platform == 'darwin' ? 'hidden' : 'default',
 			backgroundColor: nativeTheme.shouldUseDarkColors ? '#303030' : 'white',
 			fullscreenable: process.platform == 'darwin',
 
