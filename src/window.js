@@ -34,7 +34,11 @@ class Window {
 			nativeWindowOpen: true,
 
 			//appearance
-			titleBarStyle: process.platform == 'darwin' ? 'hidden' : 'default',
+			titleBarStyle: (process.platform == 'darwin' || process.platform == 'win32') ? 'hidden' : 'default',
+			titleBarOverlay: {
+				color: nativeTheme.shouldUseDarkColors ? '#303030' : 'white',
+				symbolColor: nativeTheme.shouldUseDarkColors ? 'white' : 'black'
+			},
 			backgroundColor: nativeTheme.shouldUseDarkColors ? '#303030' : 'white',
 			fullscreenable: process.platform == 'darwin',
 
