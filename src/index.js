@@ -7,6 +7,7 @@ const contextMenu = require('./contextMenu')
 const navigation = require('./navigation')
 const window = require('./window')
 const deeplink = require('./deeplink')
+const webview = require('./webview')
 
 //fix webview fail for twitter
 app.commandLine.appendSwitch("disable-features", "CrossOriginOpenerPolicy")
@@ -22,6 +23,7 @@ app.on('ready', function() {
     menu()
     contextMenu()
     navigation()
+    webview()
     
     const w = window()
     deeplink(w)
