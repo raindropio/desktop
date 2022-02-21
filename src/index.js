@@ -1,5 +1,6 @@
+require('./sentry')
+
 const { app } = require('electron')
-const sentry = require('./sentry')
 const update = require('./update')
 const platform = require('./platform')
 const menu = require('./menu')
@@ -17,7 +18,6 @@ app.enableSandbox()
 
 //start all modules
 app.on('ready', function() {
-    sentry()
     update()
     platform()
     menu()
