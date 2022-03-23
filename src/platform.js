@@ -2,7 +2,6 @@
     Platform specific logic
 */
 const { app, BrowserWindow, autoUpdater } = require('electron')
-const { enforceMacOSAppLocation } = require('electron-util')
 
 module.exports = function() {
     switch(process.platform) {
@@ -23,10 +22,6 @@ module.exports = function() {
         
         //Hide instead closing of last window on darwin
         case 'darwin':
-            try{
-                enforceMacOSAppLocation()
-            }catch(e) {}
-
             app.on('activate', function () {
                 const windows = BrowserWindow.getAllWindows()
                 if (windows.length === 0){
