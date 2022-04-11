@@ -1,5 +1,6 @@
 # Build local copy
 ```
+git submodule update --init --recursive
 yarn
 yarn build:win
 ```
