@@ -85,5 +85,16 @@ exports.default = ()=>({
         // or special unsigned appx, in powershell `add-appxpackage -path C:\appx.appx -AllowUnsigned`
         // identityName: 'NumberGuesserManifest',
         // publisher: 'CN=AppModelSamples, OID.2.25.311729368913984317654407730594956997722=1'
+    },
+
+    //Linux
+    linux: {
+        executableName: 'raindrop',
+        category: 'GNOME;GTK;Network;Education;Science',
+        target: ['snap']
+    },
+
+    snap: {
+        artifactName: 'Raindrop-${arch}.${ext}',
     }
 })

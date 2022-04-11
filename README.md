@@ -11,4 +11,11 @@ Run `yarn deploy:prod`
 
 # Windows Appx Specific Tips
 - Install unsigned copy
-https://stackoverflow.com/questions/23812471/installing-appx-without-trusted-certificate
+
+# Local testing tips
+## Windows
+Uncomment special `identityName` and `publisher` fields in `build/config.js`
+Run `add-appxpackage -path appx.appx -AllowUnsigned`
+
+## Linux
+Run `sudo snap install --dangerous dist/Raindrop-amd64.snap`
