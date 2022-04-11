@@ -59,14 +59,31 @@ exports.default = ()=>({
     //Windows
     win: {
         icon: 'build/win/icon.ico',
-        target: [{
-            target: 'squirrel',
-            arch: ['x64']
-        }]
+        target: [
+            {
+                target: 'squirrel',
+                arch: ['x64']
+            }, 
+            {
+                target: 'appx'
+            }
+        ]
     },
     squirrelWindows: {
         iconUrl: 'https://raindrop.io/favicon.ico',
         loadingGif: 'build/win/loadingGif.gif',
         artifactName: 'RaindropInstaller.exe'
+    },
+    appx: {
+        backgroundColor: '#0F0F47',
+        //windows store:
+        applicationId: 'Raindrop.io.Raindrop.io',
+        identityName: '19059Raindrop.io.Raindrop.io',
+        publisher: 'CN=49F50AA2-1546-4D45-BF61-BD9D748E1746',
+        publisherDisplayName: 'Raindrop.io',
+
+        // or special unsigned appx, in powershell `add-appxpackage -path C:\appx.appx -AllowUnsigned`
+        // identityName: 'NumberGuesserManifest',
+        // publisher: 'CN=AppModelSamples, OID.2.25.311729368913984317654407730594956997722=1'
     }
 })
