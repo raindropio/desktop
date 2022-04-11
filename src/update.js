@@ -1,6 +1,6 @@
 const { app } = require('electron')
 const isSquirrelStartup = require('electron-squirrel-startup')
-const updateApp = require('update-electron-app')
+const { autoUpdater } = require('electron-updater')
 
 module.exports = function() {
     if (process.windowsStore)
@@ -9,5 +9,5 @@ module.exports = function() {
     if (isSquirrelStartup)
         return app.quit()
 
-    updateApp()
+    autoUpdater.checkForUpdatesAndNotify()
 }

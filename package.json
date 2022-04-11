@@ -9,9 +9,9 @@
 		"url": "https://github.com/raindropio/desktop.git"
 	},
 	"scripts": {
-		"dev": "electron-forge start",
-		"build:mac": "electron-forge make --platform=darwin",
-		"build:win": "electron-forge make --platform=win32",
+		"dev": "electron-builder start --config build/config.js",
+		"build:mac": "node build/version.js && electron-builder build --mac --config build/config.js",
+		"build:win": "node build/version.js && electron-builder build --win --config build/config.js",
 		"deploy:prod": "git branch -f release/production master && git push --force origin release/production"
 	},
 	"keywords": [],
@@ -20,26 +20,20 @@
 		"email": "info@raindrop.io"
 	},
 	"license": "MIT",
-	"config": {
-		"forge": "./forge.config.js"
-	},
 	"dependencies": {
 		"@sentry/electron": "3.x",
 		"electron-context-menu": "3.1.x",
 		"electron-is-dev": "2.x",
 		"electron-squirrel-startup": "1.x",
+		"electron-updater": "^5.0.1",
 		"electron-window-state": "5.x",
-		"lodash": "^4.17.20",
-		"update-electron-app": "2.0.x"
+		"lodash": "^4.17.20"
 	},
 	"devDependencies": {
-		"@electron-forge/cli": "6.0.0-beta.63",
-		"@electron-forge/maker-appx": "6.0.0-beta.63",
-		"@electron-forge/maker-dmg": "6.0.0-beta.63",
-		"@electron-forge/maker-squirrel": "6.0.0-beta.63",
-		"@electron-forge/maker-zip": "6.0.0-beta.63",
-		"@electron-forge/publisher-github": "6.0.0-beta.63",
 		"electron": "17.3.x",
+		"electron-builder": "^23.0.3",
+		"electron-builder-squirrel-windows": "^23.0.4",
+		"electron-notarize": "^1.2.1",
 		"shx": "^0.3.2"
 	}
 }

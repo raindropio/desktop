@@ -1,4 +1,5 @@
-const { dialog, shell, autoUpdater, Menu } = require('electron')
+const { dialog, shell, Menu } = require('electron')
+const { autoUpdater } = require('electron-updater')
 
 var state = {
     update: '',
@@ -102,7 +103,7 @@ function renderUpdate() {
             return {
                 label: '⚠️ Can\'t check for updates!',
                 click() {
-                    autoUpdater.checkForUpdates()
+                    autoUpdater.checkForUpdatesAndNotify()
                     dialog.showErrorBox('Update error', updateError.toString())
                 }
             }
@@ -116,19 +117,19 @@ function renderUpdate() {
         case 'update-not-available':
             return {
                 label: 'No updates',
-                click: autoUpdater.checkForUpdates
+                click: autoUpdater.checkForUpdatesAndNotify
             }
 
         case 'update-available':
             return {
                 label: '🆕 New version available!',
-                click: autoUpdater.checkForUpdates
+                click: autoUpdater.checkForUpdatesAndNotify
             }
 
         default:
             return {
                 label: 'Check for Updates...',
-                click: autoUpdater.checkForUpdates
+                click: autoUpdater.checkForUpdatesAndNotify
             }
     }
 }

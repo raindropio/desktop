@@ -1,8 +1,5 @@
-# App
-app-bundle
-
-# Electron-Forge
-out/
+# Electron-Builder
+dist/
 
 # Logs
 logs
@@ -28,6 +25,3 @@ node_modules/
 # dotenv environment variables file
 .env
 .env.test
-
-# Serverless directories
-.serverless/

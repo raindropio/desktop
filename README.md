@@ -1,9 +1,9 @@
 # Build local copy
 ```
 yarn
-yarn build:mac
+yarn build:win
 ```
-Then check `out` folder
+Then check `dist` folder
 
 # Deployment
 Run `yarn deploy:prod`

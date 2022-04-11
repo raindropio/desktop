@@ -1,7 +1,8 @@
 /*
     Platform specific logic
 */
-const { app, BrowserWindow, autoUpdater } = require('electron')
+const { app, BrowserWindow } = require('electron')
+const { autoUpdater } = require('electron-updater')
 
 module.exports = function() {
     switch(process.platform) {

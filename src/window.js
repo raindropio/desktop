@@ -62,7 +62,7 @@ class Window {
 		if (isDev)
 			this.window.loadURL('http://localhost:2000')
 		else
-			this.window.loadFile(`${__dirname}/../app-bundle/index.html`)
+			this.window.loadFile(`${__dirname}/../webapp/dist/electron/prod/index.html`)
 
 		//events
 		this.window.once('ready-to-show', this.window.show)
