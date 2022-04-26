@@ -13,7 +13,8 @@
 		"build:mac": "node build/version.js && electron-builder build --mac --config build/config.js",
 		"build:win": "node build/version.js && electron-builder build --win --config build/config.js",
 		"build:linux": "node build/version.js && electron-builder build --linux --config build/config.js",
-		"deploy:prod": "git branch -f release/production master && git push --force origin release/production"
+		"deploy:prod": "git branch -f release/production master && git push --force origin release/production",
+		"get-submodules": "git submodule update --recursive --remote"
 	},
 	"keywords": [],
 	"author": {

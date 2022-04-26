@@ -65,7 +65,8 @@ exports.default = ()=>({
                 arch: ['x64']
             }, 
             {
-                target: 'appx'
+                target: 'appx',
+                arch: ['x64']
             }
         ]
     },
@@ -88,13 +89,13 @@ exports.default = ()=>({
     },
 
     //Linux
-    linux: {
-        executableName: 'raindrop',
-        category: 'GNOME;GTK;Network;Education;Science',
-        target: ['snap']
-    },
+    // linux: {
+    //     executableName: 'raindrop',
+    //     category: 'GNOME;GTK;Network;Education;Science',
+    //     target: ['snap']
+    // },
 
-    snap: {
-        artifactName: 'Raindrop-${arch}.${ext}',
-    }
+    // snap: {
+    //     artifactName: 'Raindrop-${arch}.${ext}',
+    // }
 })
