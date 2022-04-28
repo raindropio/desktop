@@ -10,11 +10,11 @@
 	},
 	"scripts": {
 		"dev": "electron-builder start --config build/config.js",
-		"build:mac": "node build/version.js && electron-builder build --mac --config build/config.js",
-		"build:win": "node build/version.js && electron-builder build --win --config build/config.js",
-		"build:linux": "node build/version.js && electron-builder build --linux --config build/config.js",
+		"build:mac": "yarn pre:build && electron-builder build --mac --config build/config.js",
+		"build:win": "yarn pre:build && electron-builder build --win --config build/config.js",
+		"build:linux": "yarn pre:build && electron-builder build --linux --config build/config.js",
 		"deploy:prod": "git branch -f release/production master && git push --force origin release/production",
-		"get-submodules": "git submodule update --recursive --remote"
+		"pre:build": "git submodule update --recursive --remote && node build/version.js"
 	},
 	"keywords": [],
 	"author": {
