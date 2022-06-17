@@ -76,6 +76,7 @@ exports.default = ()=>({
         artifactName: 'RaindropInstaller.exe'
     },
     appx: {
+        artifactName: 'Raindrop.appx',
         backgroundColor: '#0F0F47',
         //windows store:
         applicationId: 'Raindrop.io.Raindrop.io',
