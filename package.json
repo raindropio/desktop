@@ -13,8 +13,9 @@
 		"build:mac": "yarn pre:build && electron-builder build --mac --config build/config.js",
 		"build:win": "yarn pre:build && electron-builder build --win --config build/config.js",
 		"build:linux": "yarn pre:build && electron-builder build --linux --config build/config.js",
-		"deploy:prod": "git branch -f release/production master && git push --force origin release/production",
-		"pre:build": "git submodule update --recursive --remote && node build/version.js"
+		"deploy:prod": "get-latest-webapp && git branch -f release/production master && git push --force origin release/production",
+		"pre:build": "node build/version.js",
+		"get-latest-webapp": "git submodule update --recursive --remote"
 	},
 	"keywords": [],
 	"author": {
