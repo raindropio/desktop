@@ -72,8 +72,7 @@ exports.default = ()=>({
     },
     squirrelWindows: {
         iconUrl: 'https://raindrop.io/favicon.ico',
-        loadingGif: 'build/win/loadingGif.gif',
-        artifactName: 'RaindropInstaller.exe'
+        loadingGif: 'build/win/loadingGif.gif'
     },
     appx: {
         artifactName: 'Raindrop.appx',
