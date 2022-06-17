@@ -34,4 +34,4 @@ jobs:
         client-id: ${{ secrets.AZURE_AD_APPLICATION_CLIENT_ID }}
         client-secret: ${{ secrets.AZURE_AD_APPLICATION_SECRET }}
         app-id: Raindrop.io.Raindrop.io
-        package-path: "${{ github.workspace }}/dist/Raindrop.appx"
+        package-path: "${{ github.workspace }}\dist"
