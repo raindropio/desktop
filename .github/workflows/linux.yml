@@ -26,3 +26,11 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
       run: yarn build:linux --publish always
+
+    - name: publish
+      uses: snapcore/action-publish@v1
+      env:
+        SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_EXPORT }}
+      with:
+        snap: "${{ github.workspace }}/dist/Raindrop-amd64.snap"
+        release: stable
