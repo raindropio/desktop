@@ -13,8 +13,8 @@ jobs:
       with:
         submodules: 'recursive'
 
-    - name: Use Snapcraft
-      uses: snapcore/action-build@v1
+    - name: Install Snapcraft
+      uses: samuelmeuli/action-snapcraft@v1
     
     - name: Use Node.js 16.x
       uses: actions/setup-node@v1
