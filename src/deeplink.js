@@ -1,15 +1,14 @@
 const { app } = require('electron')
-const isDev = require('electron-is-dev')
 const path = require('path')
 const protocol = 'rnio'
 
 module.exports = function(window) {
     app.removeAsDefaultProtocolClient(protocol);
 
-    //fix dev build on windows
-    if(isDev && process.platform === 'win32')
-        app.setAsDefaultProtocolClient(protocol, process.execPath, [path.resolve(process.argv[1])])
-    else
+    if (process.defaultApp) {
+        if (process.argv.length >= 2)
+            app.setAsDefaultProtocolClient(protocol, process.execPath, [path.resolve(process.argv[1])])
+    } else
         app.setAsDefaultProtocolClient(protocol)
 
     function onDeepLink(url) {
@@ -20,8 +19,10 @@ module.exports = function(window) {
     }
 
     //on windows deeplinks handeled differently
-    if (process.platform=='win32')
+    if (process.platform=='win32' || process.platform=='linux')
         app.on('second-instance', (e, commandLine) =>{
+            e.preventDefault();
+
             const url = commandLine[commandLine.length-1]
             //validate
             try{new URL(url)} catch(e) {}

@@ -8,6 +8,7 @@ module.exports = function() {
     switch(process.platform) {
         //Prevent multiple copies, in case of run of second instance bring main app to front
         case 'win32':
+        case 'linux':
             if (!app.requestSingleInstanceLock())
                 return app.quit()
             else
@@ -18,7 +19,7 @@ module.exports = function() {
                     if (windows[0].isMinimized())
                         windows[0].restore()
                     windows[0].focus()
-                })            
+                })
         break
         
         //Hide instead closing of last window on darwin

@@ -13,11 +13,12 @@ const webview = require('./webview')
 //fix webview fail for twitter
 app.commandLine.appendSwitch("disable-features", "CrossOriginOpenerPolicy")
 
-//security
-app.enableSandbox()
+//security (snap doesn't work properly with sandbox)
+if (process.platform!='linux')
+    app.enableSandbox()
 
 //start all modules
-app.on('ready', function() {
+app.whenReady().then(function() {
     update()
     platform()
     menu()

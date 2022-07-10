@@ -88,13 +88,17 @@ exports.default = ()=>({
     },
 
     //Linux
-    // linux: {
-    //     executableName: 'raindrop',
-    //     category: 'GNOME;GTK;Network;Education;Science',
-    //     target: ['snap']
-    // },
+    linux: {
+        executableName: 'raindrop',
+        category: 'GNOME;GTK;Network;Education;Science',
+        target: ['snap'],
+        desktop: {
+            StartupWMClass: 'Raindrop.io',
+            MimeType: 'x-scheme-handler/rnio'
+        }
+    },
 
-    // snap: {
-    //     artifactName: 'Raindrop-${arch}.${ext}',
-    // }
+    snap: {
+        artifactName: 'Raindrop-${arch}.${ext}'
+    }
 })
