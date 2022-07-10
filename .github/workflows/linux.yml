@@ -15,8 +15,6 @@ jobs:
 
     - name: Install Snapcraft
       uses: samuelmeuli/action-snapcraft@v1
-      with:
-        snapcraft_token: ${{ secrets.SNAPCRAFT_EXPORT }}
     
     - name: Use Node.js 16.x
       uses: actions/setup-node@v1
@@ -30,5 +28,12 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      run: yarn build:linux
+
+    - name: publish
+      uses: snapcore/action-publish@v1
+      env:
         SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_EXPORT }}
-      run: yarn build:linux --publish always
+      with:
+        snap: "${{ github.workspace }}/dist/Raindrop-amd64.snap"
+        release: stable
