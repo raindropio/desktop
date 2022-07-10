@@ -1,4 +1,4 @@
-const { app } = require('electron')
+const { app, dialog } = require('electron')
 const path = require('path')
 const protocol = 'rnio'
 
@@ -13,6 +13,10 @@ module.exports = function(window) {
 
     function onDeepLink(url) {
         if (!url) return
+
+        //otherwise shutdown for no reason :(
+        if (process.platform=='linux')
+            dialog.showMessageBoxSync(window.window, { message: 'Deeplink received!', type: 'none' })
 
         window.window.show()
         window.setPath(url.replace(`${protocol}:/`, ''))
