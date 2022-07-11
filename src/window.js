@@ -36,10 +36,10 @@ class Window {
 			//appearance
 			titleBarStyle: (process.platform == 'darwin' || process.platform == 'win32') ? 'hidden' : 'default',
 			titleBarOverlay: {
-				color: nativeTheme.shouldUseDarkColors ? '#303030' : 'white',
+				color: nativeTheme.shouldUseDarkColors ? '#2A2B2D' : 'white',
 				symbolColor: nativeTheme.shouldUseDarkColors ? 'white' : 'black'
 			},
-			backgroundColor: nativeTheme.shouldUseDarkColors ? '#303030' : 'white',
+			backgroundColor: nativeTheme.shouldUseDarkColors ? '#2A2B2D' : 'white',
 			fullscreenable: process.platform == 'darwin',
 
 			//security

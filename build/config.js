@@ -90,6 +90,7 @@ exports.default = ()=>({
     //Linux
     linux: {
         executableName: 'raindrop',
+        icon: 'build/linux',
         category: 'GNOME;GTK;Network;Education;Science',
         target: ['snap'],
         desktop: {
