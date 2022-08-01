@@ -1,8 +1,9 @@
 const { app } = require('electron')
+const path = require("path");
 
 function onWillAttachWebview(_, webPreferences) {
     //preload highligh script for all webview's
-    webPreferences.preloadURL = `file://${__dirname}/highlight.js`
+    webPreferences.preload = path.join(__dirname, "highlight.js")
 }
 
 module.exports = function() {

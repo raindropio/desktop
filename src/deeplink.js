@@ -13,13 +13,15 @@ module.exports = function(window) {
 
     function onDeepLink(url) {
         if (!url) return
-
-        //otherwise shutdown for no reason :(
-        if (process.platform=='linux')
-            dialog.showMessageBoxSync(window.window, { message: 'Deeplink received!', type: 'none' })
-
         window.window.show()
-        window.setPath(url.replace(`${protocol}:/`, ''))
+
+        if (String(url).startsWith(`${protocol}:/`)) {
+            //otherwise shutdown for no reason :(
+            if (process.platform=='linux')
+                dialog.showMessageBoxSync(window.window, { message: 'Deeplink received!', type: 'none' })
+
+            window.setPath(url.replace(`${protocol}:/`, ''))
+        }
     }
 
     //on windows deeplinks handeled differently
