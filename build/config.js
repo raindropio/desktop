@@ -66,7 +66,7 @@ exports.default = ()=>({
             }, 
             {
                 target: 'appx',
-                arch: ['x64']
+                arch: ['x64', 'arm64']
             }
         ]
     },
