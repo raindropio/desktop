@@ -32,7 +32,7 @@
 		"lodash": "^4.17.20"
 	},
 	"devDependencies": {
-		"electron": "19.0.x",
+		"electron": "19.1.x",
 		"electron-builder": "^23.0.3",
 		"electron-builder-squirrel-windows": "^23.0.4",
 		"electron-notarize": "^1.2.1",
