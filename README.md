@@ -2,13 +2,13 @@
 ```
 git submodule update --init --recursive
 git submodule update --remote --merge
-yarn
-yarn build:win
+npm i
+npm run build:win
 ```
 Then check `dist` folder
 
 # Deployment
-Run `yarn deploy:prod`
+Run `npm run deploy:prod`
 
 # Local testing tips
 ## Windows

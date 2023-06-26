@@ -22,13 +22,13 @@ jobs:
         node-version: 16.x
 
     - name: install dependencies
-      run: yarn
+      run: npm i
 
     - name: build
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-      run: yarn build:linux --publish never
+      run: npm run build:linux --publish never
 
     - name: publish
       uses: snapcore/action-publish@v1

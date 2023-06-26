@@ -10,12 +10,14 @@ function windowOpenHandler({url}) {
     return { action: 'deny' }
 }
 
-function onWillNavigate(e, url) {
+function onWillNavigate(e) {
+    const { url, initiator } = e
+    
     let origin, target
 
     //origin
     try{
-        origin = new URL(e.sender.getURL())
+        origin = new URL(initiator.url)
     }catch(e) {
         if (String(e).includes('Invalid URL'))
             origin = new URL('about:blank')
@@ -32,7 +34,7 @@ function onWillNavigate(e, url) {
         else
             throw e
     }
-        
+
     //prevent navigation to external link's
     if (origin.host != target.host ||
         origin.protocol != target.protocol){
