@@ -25,7 +25,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-      run: npm run build:win --publish always
+      run: npm run build:win -- --publish always
 
     # - name: Publish to Store
     #   uses: isaacrlevin/windows-store-action@1.0
