@@ -9,7 +9,7 @@
 		"url": "https://github.com/raindropio/desktop.git"
 	},
 	"scripts": {
-		"dev": "electron-builder start --config build/config.js",
+		"dev": "electron .",
 		"build:mac": "npm run pre:build && electron-builder build --mac --config build/config.js",
 		"build:win": "npm run pre:build && electron-builder build --win --config build/config.js",
 		"build:linux": "npm run pre:build && electron-builder build --linux --config build/config.js",
@@ -32,7 +32,7 @@
 		"lodash": "^4.17.20"
 	},
 	"devDependencies": {
-		"electron": "25.2.x",
+		"electron": "28.1.x",
 		"electron-builder": "^24.4.0",
 		"electron-builder-squirrel-windows": "^24.5.1",
 		"electron-notarize": "^1.2.1",
