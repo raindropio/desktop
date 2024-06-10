@@ -1,8 +1,9 @@
 import { app } from 'electron'
+import { resolve } from 'path'
 
 const onWillAttachWebview = (_, webPreferences) => {
     //preload highligh script for all webview's
-    webPreferences.preload = new URL('./highlight.js', import.meta.url).pathname
+    webPreferences.preload = resolve(import.meta.dirname, './highlight.js')
 }
 
 export default function() {

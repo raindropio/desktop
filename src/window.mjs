@@ -1,6 +1,7 @@
 import { BrowserWindow, nativeTheme } from 'electron'
 import isDev from 'electron-is-dev'
 import windowState from 'electron-window-state'
+import { resolve } from 'path'
 
 class Window {
 	window = null
@@ -62,7 +63,7 @@ class Window {
 		if (isDev)
 			this.window.loadURL('http://localhost:2000')
 		else
-			this.window.loadFile(new URL('../webapp/dist/electron/prod/index.html', import.meta.url).pathname)
+			this.window.loadFile(resolve(import.meta.dirname, '../webapp/dist/electron/prod/index.html'))
 
 		//events
 		this.window.once('ready-to-show', this.window.show)
