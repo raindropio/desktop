@@ -2,7 +2,6 @@ exports.default = ()=>({
     appId: 'io.raindrop.macapp',
 
     beforePack: 'build/webapp.js',
-    afterSign: 'build/mac/notarize.js',
 
     //Include
     files: [
@@ -30,7 +29,10 @@ exports.default = ()=>({
         target: [{
             target: 'default',
             arch: ['x64', 'arm64']
-        }]
+        }],
+        notarize: {
+            teamId: '7459JWM5TY'
+        }
     },
     dmg: {
         artifactName: 'Raindrop-${arch}.${ext}',

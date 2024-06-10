@@ -1,6 +1,6 @@
-const { BrowserWindow, nativeTheme } = require('electron')
-const isDev = require('electron-is-dev')
-const windowState = require('electron-window-state')
+import { BrowserWindow, nativeTheme } from 'electron'
+import isDev from 'electron-is-dev'
+import windowState from 'electron-window-state'
 
 class Window {
 	window = null
@@ -62,7 +62,7 @@ class Window {
 		if (isDev)
 			this.window.loadURL('http://localhost:2000')
 		else
-			this.window.loadFile(`${__dirname}/../webapp/dist/electron/prod/index.html`)
+			this.window.loadFile(new URL('../webapp/dist/electron/prod/index.html', import.meta.url).pathname)
 
 		//events
 		this.window.once('ready-to-show', this.window.show)
@@ -79,6 +79,6 @@ class Window {
 	}
 }
 
-module.exports = function() {
+export default function() {
 	return new Window()
 }

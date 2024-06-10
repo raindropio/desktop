@@ -1,10 +1,12 @@
+import { app, BrowserWindow } from 'electron'
+import updater from 'electron-updater'
+import { updateable } from './update.mjs'
+
 /*
     Platform specific logic
 */
-const { app, BrowserWindow } = require('electron')
-const { autoUpdater } = require('electron-updater')
 
-module.exports = function() {
+export default () => {
     switch(process.platform) {
         //Prevent multiple copies, in case of run of second instance bring main app to front
         case 'win32':
@@ -24,7 +26,7 @@ module.exports = function() {
         
         //Hide instead closing of last window on darwin
         case 'darwin':
-            app.on('activate', function () {
+            app.on('activate', () => {
                 const windows = BrowserWindow.getAllWindows()
                 if (windows.length === 0){
                     app.relaunch()
@@ -36,7 +38,7 @@ module.exports = function() {
             
             let _firstWin = true
             let _quiting = false
-            app.on('browser-window-created', function (e, window) {
+            app.on('browser-window-created', (e, window) => {
                 if (_firstWin){
                     window.on('close', function(e) {
                         if (this.isFullScreen())
@@ -56,18 +58,19 @@ module.exports = function() {
                 }
             })
             
-            app.on('before-quit', function(){
+            app.on('before-quit', () => {
                 _quiting = true
             })
             
-            app.on('window-all-closed', function () {
+            app.on('window-all-closed', () => {
                 app.quit()
             })
 
-            autoUpdater.on('update-downloaded', function () {
-                //fix restart option for updates
-                _quiting = true
-            })
+            if (updateable())
+                updater.autoUpdater.on('update-downloaded', () => {
+                    //fix restart option for updates
+                    _quiting = true
+                })
         break
     }
 }

@@ -1,36 +1,39 @@
-const { dialog, shell, Menu } = require('electron')
-const { autoUpdater } = require('electron-updater')
+import { dialog, shell, Menu } from 'electron'
+import updater from 'electron-updater'
+import { updateable } from './update.mjs'
 
-var state = {
+const state = {
     update: '',
     updateError: null
-}
+};
 
-function render() {
+const render = () => {
     Menu.setApplicationMenu(
         Menu.buildFromTemplate([
             {
                 role: 'appMenu',
                 submenu: [
                     { role: 'about' },
-                    ...(process.windowsStore ? [] : [renderUpdate()]),
+                    ...(updateable() ? [renderUpdate()] : []),
                     { type: 'separator' },
-                    ...(process.platform == 'darwin' ? [
-                        { role: 'services' },
-                        { type: 'separator' },
-                        { role: 'hide' },
-                        { role: 'hideothers' },
-                        { role: 'unhide' },
-                        { type: 'separator' },
-                    ] : []),
-                    { role: 'quit' }
-                ]
+                    ...(process.platform == 'darwin'
+                        ? [
+                                { role: 'services' },
+                                { type: 'separator' },
+                                { role: 'hide' },
+                                { role: 'hideothers' },
+                                { role: 'unhide' },
+                                { type: 'separator' },
+                            ]
+                        : []),
+                    { role: 'quit' },
+                ],
             },
             {
-                role: 'fileMenu'
+                role: 'fileMenu',
             },
             {
-                role: 'editMenu'
+                role: 'editMenu',
             },
             {
                 label: 'View',
@@ -103,7 +106,7 @@ function renderUpdate() {
             return {
                 label: '⚠️ Can\'t check for updates!',
                 click() {
-                    autoUpdater.checkForUpdatesAndNotify()
+                    updater.autoUpdater.checkForUpdatesAndNotify()
                     dialog.showErrorBox('Update error', updateError.toString())
                 }
             }
@@ -111,55 +114,57 @@ function renderUpdate() {
         case 'update-downloaded':
             return {
                 label: 'Restart to Update',
-                click: autoUpdater.quitAndInstall
+                click: updater.autoUpdater.quitAndInstall
             }
 
         case 'update-not-available':
             return {
                 label: 'No updates',
-                click: autoUpdater.checkForUpdatesAndNotify
+                click: updater.autoUpdater.checkForUpdatesAndNotify
             }
 
         case 'update-available':
             return {
                 label: '🆕 New version available!',
-                click: autoUpdater.checkForUpdatesAndNotify
+                click: updater.autoUpdater.checkForUpdatesAndNotify
             }
 
         default:
             return {
                 label: 'Check for Updates...',
-                click: autoUpdater.checkForUpdatesAndNotify
+                click: updater.autoUpdater.checkForUpdatesAndNotify
             }
     }
 }
 
-module.exports = function() {
+export default function() {
     render()
 
-    autoUpdater.on('checking-for-update', ()=>{
-        state.update = 'checking-for-update'
-        render()
-    })
+    if (updateable()) {
+        updater.autoUpdater.on('checking-for-update', ()=>{
+            state.update = 'checking-for-update'
+            render()
+        })
 
-    autoUpdater.on('error', e=>{
-        state.update = 'error'
-        state.updateError = e
-        render()
-    })
+        updater.autoUpdater.on('error', e=>{
+            state.update = 'error'
+            state.updateError = e
+            render()
+        })
 
-    autoUpdater.on('update-available', ()=>{
-        state.update = 'update-available'
-        render()
-    })
+        updater.autoUpdater.on('update-available', ()=>{
+            state.update = 'update-available'
+            render()
+        })
 
-    autoUpdater.on('update-downloaded', ()=>{
-        state.update = 'update-downloaded'
-        render()
-    })
+        updater.autoUpdater.on('update-downloaded', ()=>{
+            state.update = 'update-downloaded'
+            render()
+        })
 
-    autoUpdater.on('update-not-available', ()=>{
-        state.update = 'update-not-available'
-        render()
-    })
+        updater.autoUpdater.on('update-not-available', ()=>{
+            state.update = 'update-not-available'
+            render()
+        })
+    }
 }
