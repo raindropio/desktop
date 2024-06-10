@@ -77,7 +77,7 @@ exports.default = ()=>({
         loadingGif: 'build/win/loadingGif.gif'
     },
     appx: {
-        backgroundColor: '#0F0F47',
+        backgroundColor: 'transparent',
         //windows store:
         applicationId: 'Raindrop.io.Raindrop.io',
         identityName: '19059Raindrop.io.Raindrop.io',
