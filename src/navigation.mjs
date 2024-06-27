@@ -17,7 +17,7 @@ const onWillNavigate = (e) => {
 
     // origin
     try {
-        origin = new URL(initiator.url)
+        origin = new URL(initiator?.url)
     } catch (e) {
         if (String(e).includes('Invalid URL')) {
             origin = new URL('about:blank')
