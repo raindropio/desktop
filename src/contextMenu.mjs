@@ -7,7 +7,6 @@ export default function() {
         contextMenu({
             window: {
                 webContents: contents,
-                inspectElement: contents.inspectElement.bind(contents)
             },
 
             showCopyImageAddress: true,
@@ -16,7 +15,7 @@ export default function() {
             showSaveLinkAs: true,
             showInspectElement: isDev,
             append: () => [
-                {label: "Reload", click: contents.reload}
+                {label: "Reload", click: ()=>contents.reload()}
             ]
         })
     })
