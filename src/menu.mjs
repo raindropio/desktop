@@ -114,25 +114,25 @@ function renderUpdate() {
         case 'update-downloaded':
             return {
                 label: 'Restart to Update',
-                click: updater.autoUpdater.quitAndInstall
+                click: ()=>updater.autoUpdater.quitAndInstall()
             }
 
         case 'update-not-available':
             return {
                 label: 'No updates',
-                click: updater.autoUpdater.checkForUpdatesAndNotify
+                click: ()=>updater.autoUpdater.checkForUpdatesAndNotify()
             }
 
         case 'update-available':
             return {
                 label: '🆕 New version available!',
-                click: updater.autoUpdater.checkForUpdatesAndNotify
+                click: ()=>updater.autoUpdater.checkForUpdatesAndNotify()
             }
 
         default:
             return {
                 label: 'Check for Updates...',
-                click: updater.autoUpdater.checkForUpdatesAndNotify
+                click: ()=>updater.autoUpdater.checkForUpdatesAndNotify()
             }
     }
 }
