@@ -5,9 +5,7 @@ import contextMenu from 'electron-context-menu'
 export default function() {
     app.on('web-contents-created', (_, contents) => {
         contextMenu({
-            window: {
-                webContents: contents,
-            },
+            window: contents,
 
             showCopyImageAddress: true,
             showSaveImageAs: true,

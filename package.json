@@ -27,13 +27,12 @@
 		"electron-is-dev": "3.x",
 		"electron-squirrel-startup": "1.x",
 		"electron-updater": "^6.1.1",
-		"electron-window-state": "5.x",
-		"lodash": "^4.17.20"
+		"electron-window-state": "5.x"
 	},
 	"devDependencies": {
-		"electron": "31.1.x",
-		"electron-builder": "^24.4.0",
-		"electron-builder-squirrel-windows": "^24.5.1",
+		"electron": "32.1.x",
+		"electron-builder": "^25.0.5",
+		"electron-builder-squirrel-windows": "^25.0.5",
 		"electron-notarize": "^1.2.1",
 		"shx": "^0.3.2"
 	}
