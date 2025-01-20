@@ -94,7 +94,7 @@ exports.default = ()=>({
         executableName: 'raindrop',
         icon: 'build/linux',
         category: 'GNOME;GTK;Network;Education;Science',
-        target: ['AppImage', 'tar.gz', 'deb', 'rpm', 'snap', 'flatpak'],
+        target: ['snap'],
         desktop: {
             StartupWMClass: 'Raindrop.io',
             MimeType: 'x-scheme-handler/rnio'
