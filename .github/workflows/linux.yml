@@ -37,11 +37,3 @@ jobs:
       with:
         snap: "${{ github.workspace }}/dist/Raindrop-amd64.snap"
         release: stable
-
-    - name: publish arm64
-      uses: snapcore/action-publish@v1
-      env:
-        SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_EXPORT }}
-      with:
-        snap: "${{ github.workspace }}/dist/Raindrop-arm64.snap"
-        release: stable
