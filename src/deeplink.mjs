@@ -4,8 +4,6 @@ import path from 'path'
 const protocol = 'rnio'
 
 export default function deeplinkHandler(window) {
-    app.removeAsDefaultProtocolClient(protocol)
-
     if (process.defaultApp) {
         if (process.argv.length >= 2) {
             app.setAsDefaultProtocolClient(protocol, process.execPath, [path.resolve(process.argv[1])])

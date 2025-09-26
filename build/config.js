@@ -29,10 +29,7 @@ exports.default = ()=>({
         target: [{
             target: 'default',
             arch: ['x64', 'arm64']
-        }],
-        notarize: {
-            teamId: '7459JWM5TY'
-        }
+        }]
     },
     dmg: {
         artifactName: 'Raindrop-${arch}.${ext}',
@@ -96,8 +93,10 @@ exports.default = ()=>({
         category: 'GNOME;GTK;Network;Education;Science',
         target: ['snap'],
         desktop: {
-            StartupWMClass: 'Raindrop.io',
-            MimeType: 'x-scheme-handler/rnio'
+            entry: {
+                StartupWMClass: 'Raindrop.io',
+                MimeType: 'x-scheme-handler/rnio'
+            }
         }
     },
 

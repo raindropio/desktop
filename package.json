@@ -23,17 +23,17 @@
 	},
 	"license": "MIT",
 	"dependencies": {
-		"electron-context-menu": "4.0.x",
+		"electron-context-menu": "4.1.x",
 		"electron-is-dev": "3.x",
 		"electron-squirrel-startup": "1.x",
 		"electron-updater": "^6.1.1",
 		"electron-window-state": "5.x"
 	},
 	"devDependencies": {
-		"electron": "32.1.x",
-		"electron-builder": "^25.0.5",
-		"electron-builder-squirrel-windows": "^25.0.5",
+		"electron": "38.1.x",
+		"electron-builder": "^26.0.12",
+		"electron-builder-squirrel-windows": "^26.0.12",
 		"electron-notarize": "^1.2.1",
-		"shx": "^0.3.2"
+		"shx": "^0.4.0"
 	}
 }
