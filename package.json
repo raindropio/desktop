@@ -30,7 +30,7 @@
 		"electron-window-state": "5.x"
 	},
 	"devDependencies": {
-		"electron": "38.1.x",
+		"electron": "38.3.x",
 		"electron-builder": "^26.0.12",
 		"electron-builder-squirrel-windows": "^26.0.12",
 		"electron-notarize": "^1.2.1",
