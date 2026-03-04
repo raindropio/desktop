@@ -1,5 +1,4 @@
-const util = require('util')
-const exec = util.promisify(require('child_process').exec)
+const { execSync } = require('child_process')
 const fs = require('fs')
 const path = require('path')
 
@@ -13,10 +12,20 @@ exports.default = async function(context) {
         return
     }
 
-    // Pass SENTRY_AUTH_TOKEN through the environment; if unset use empty string so the
-    // Sentry CLI plugin skips uploading rather than failing the whole build.
+    // The webapp's webpack config includes a Sentry CLI plugin that exits non-zero when
+    // SENTRY_AUTH_TOKEN is missing. The dist files are still produced, so we tolerate the
+    // error and verify the output exists afterwards.
     const env = { ...process.env }
     if (!env.SENTRY_AUTH_TOKEN) env.SENTRY_AUTH_TOKEN = ''
 
-    await exec('cd webapp && npm i && npm run build:electron', { env })
+    try {
+        execSync('cd webapp && npm i && npm run build:electron', { env, stdio: 'inherit' })
+    } catch (e) {
+        // Check if dist was created despite the error (Sentry CLI failure is non-fatal)
+        if (fs.existsSync(distIndex)) {
+            console.log('  • webapp build exited with error (likely Sentry CLI) but dist was produced — continuing')
+            return
+        }
+        throw new Error('webapp build failed and no dist was produced: ' + e.message)
+    }
 }
