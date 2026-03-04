@@ -91,7 +91,9 @@ exports.default = ()=>({
         executableName: 'raindrop',
         icon: 'build/linux',
         category: 'GNOME;GTK;Network;Education;Science',
-        target: ['snap'],
+        // AppImage and deb run outside snap confinement so GPU/display issues don't apply.
+        // snap kept for Snap Store publishing.
+        target: ['AppImage', 'deb', 'snap'],
         desktop: {
             entry: {
                 StartupWMClass: 'Raindrop.io',
@@ -101,6 +103,8 @@ exports.default = ()=>({
     },
 
     snap: {
-        artifactName: 'Raindrop-${arch}.${ext}'
+        artifactName: 'Raindrop-${arch}.${ext}',
+        // Grant display and GPU access so the snap version works without manual plug connections.
+        plugs: ['x11', 'wayland', 'desktop', 'desktop-legacy', 'opengl', 'home', 'network', 'browser-support']
     }
 })

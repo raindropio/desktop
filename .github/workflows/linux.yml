@@ -2,38 +2,36 @@ name: Build Linux
 
 on:
   push:
-    branches:
-    - release/production
+    tags:
+    - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         submodules: 'recursive'
 
-    - name: Install Snapcraft
-      uses: samuelmeuli/action-snapcraft@v1
-    
     - name: Use Node.js 20.x
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v4
       with:
         node-version: 20.x
 
     - name: install dependencies
       run: npm i
 
-    - name: build
+    - name: build deb
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-      run: npm run build:linux -- --publish never
+      run: npm run build:linux -- --linux deb --publish always
 
-    - name: publish amd64
-      uses: snapcore/action-publish@v1
-      env:
-        SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_EXPORT }}
+    - name: upload deb artifact
+      uses: actions/upload-artifact@v4
       with:
-        snap: "${{ github.workspace }}/dist/Raindrop-amd64.snap"
-        release: stable
+        name: Raindrop-linux-deb
+        path: dist/*.deb
