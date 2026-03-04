@@ -1,12 +1,12 @@
 {
 	"name": "Raindrop.io",
 	"productName": "Raindrop.io",
-	"version": "5.7.3",
+	"version": "0.0.0",
 	"description": "Crossplatform bookmarking app",
 	"main": "src/index.mjs",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/0xTriboulet/desktop.git"
+		"url": "https://github.com/raindropio/desktop.git"
 	},
 	"scripts": {
 		"dev": "electron .",
