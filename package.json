@@ -6,7 +6,7 @@
 	"main": "src/index.mjs",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/raindropio/desktop.git"
+		"url": "https://github.com/0xTriboulet/desktop.git"
 	},
 	"scripts": {
 		"dev": "electron .",

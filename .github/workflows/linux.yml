@@ -2,9 +2,6 @@ name: Build Linux
 
 on:
   push:
-    branches:
-    - master
-    - release/production
     tags:
     - 'v*'
   workflow_dispatch:
@@ -28,10 +25,10 @@ jobs:
     - name: install dependencies
       run: npm i
 
-    - name: build
+    - name: build deb
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: npm run build:linux -- --publish always
+      run: npm run build:linux -- --linux deb --publish always
 
     - name: upload deb artifact
       uses: actions/upload-artifact@v4
