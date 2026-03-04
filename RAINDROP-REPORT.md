@@ -192,24 +192,37 @@ After a successful build, the following files are produced in `./dist/`:
 
 | File | Type | Size (approx) | Notes |
 |---|---|---|---|
-| `Raindrop.io-5.7.3.AppImage` | AppImage | ~114 MB | **Recommended** – portable, no install |
-| `Raindrop.io_5.7.3_amd64.deb` | Debian package | ~79 MB | Install with `dpkg -i` |
+| `Raindrop.io_5.7.3_amd64.deb` | Debian package | ~79 MB | **Recommended for Ubuntu/Debian** |
+| `Raindrop.io-5.7.3.AppImage` | AppImage | ~114 MB | Requires `libfuse2` (see Known Issues) |
 | `Raindrop-amd64.snap` | Snap package | ~96 MB | For Snap Store / `snap install` |
 
-### Recommended Binary Path
+### Recommended Binary Path (Ubuntu/Debian)
 
 ```
-dist/Raindrop.io-5.7.3.AppImage
+dist/Raindrop.io_5.7.3_amd64.deb
 ```
 
-**To run:**
+**To install and run:**
 
 ```bash
-chmod +x dist/Raindrop.io-5.7.3.AppImage
-./dist/Raindrop.io-5.7.3.AppImage
+sudo dpkg -i dist/Raindrop.io_5.7.3_amd64.deb
+raindrop
 ```
 
 No `--ozone-platform=x11` flag is needed — the fix is built into the application.
+
+---
+
+## Known Issues
+
+### AppImage: `dlopen(): error loading libfuse.so.2`
+
+AppImages built by electron-builder use AppImage runtime type 2, which requires
+`libfuse2`. Ubuntu 22.04 and later ship with `libfuse3` only; `libfuse2` is not
+installed by default.
+
+**Use the `.deb` package instead** — it has no FUSE dependency and installs cleanly
+on all Debian/Ubuntu releases.
 
 ---
 

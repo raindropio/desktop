@@ -3,9 +3,9 @@
 # Usage: ./build.sh
 #
 # Produces in ./dist/:
-#   Raindrop-<version>-<arch>.AppImage   (recommended – portable, no install needed)
-#   raindrop_<version>_<arch>.deb        (Debian/Ubuntu package)
-#   Raindrop-<arch>.snap                 (Snap Store package)
+#   Raindrop.io_<version>_amd64.deb   (recommended for Debian/Ubuntu)
+#   Raindrop.io-<version>.AppImage    (portable; requires libfuse2 to run)
+#   Raindrop-<arch>.snap              (Snap Store package)
 
 set -euo pipefail
 
@@ -38,9 +38,13 @@ echo "==> Build complete. Artifacts in ./dist/:"
 ls -lh dist/*.AppImage dist/*.deb dist/*.snap 2>/dev/null || ls dist/
 
 echo ""
-echo "To run the AppImage directly:"
-APPIMAGE=$(ls dist/*.AppImage 2>/dev/null | head -1)
-if [ -n "$APPIMAGE" ]; then
-    chmod +x "$APPIMAGE"
-    echo "  chmod +x $APPIMAGE && $APPIMAGE"
+echo "To install on Debian/Ubuntu (recommended):"
+DEB=$(ls dist/*.deb 2>/dev/null | head -1)
+if [ -n "$DEB" ]; then
+    echo "  sudo dpkg -i $DEB"
+    echo "  Then launch: raindrop"
 fi
+
+echo ""
+echo "NOTE: The AppImage requires libfuse2 (not present by default on Ubuntu 22.04+)."
+echo "      Use the .deb package above instead."
