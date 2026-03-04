@@ -7,17 +7,21 @@ on:
     - release/production
     tags:
     - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         submodules: 'recursive'
 
     - name: Use Node.js 20.x
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v4
       with:
         node-version: 20.x
 
@@ -27,11 +31,10 @@ jobs:
     - name: build
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
       run: npm run build:linux -- --publish always
 
     - name: upload deb artifact
       uses: actions/upload-artifact@v4
       with:
         name: Raindrop-linux-deb
-        path: dist/Raindrop*.deb
+        path: dist/*.deb
