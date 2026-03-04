@@ -30,7 +30,19 @@ jobs:
         SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
       run: npm run build:linux -- --publish never
 
-    - name: publish amd64
+    - name: upload AppImage artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: Raindrop-linux-AppImage
+        path: dist/Raindrop*.AppImage
+
+    - name: upload deb artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: Raindrop-linux-deb
+        path: dist/Raindrop*.deb
+
+    - name: publish snap amd64
       uses: snapcore/action-publish@v1
       env:
         SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_EXPORT }}
