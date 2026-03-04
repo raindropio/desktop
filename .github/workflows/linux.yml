@@ -3,6 +3,7 @@ name: Build Linux
 on:
   push:
     branches:
+    - master
     - release/production
 
 jobs:
@@ -13,9 +14,6 @@ jobs:
       with:
         submodules: 'recursive'
 
-    - name: Install Snapcraft
-      uses: samuelmeuli/action-snapcraft@v1
-    
     - name: Use Node.js 20.x
       uses: actions/setup-node@v1
       with:
@@ -28,24 +26,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-      run: npm run build:linux -- --publish never
-
-    - name: upload AppImage artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: Raindrop-linux-AppImage
-        path: dist/Raindrop*.AppImage
+      run: npm run build:linux -- --publish always
 
     - name: upload deb artifact
       uses: actions/upload-artifact@v4
       with:
         name: Raindrop-linux-deb
         path: dist/Raindrop*.deb
-
-    - name: publish snap amd64
-      uses: snapcore/action-publish@v1
-      env:
-        SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_EXPORT }}
-      with:
-        snap: "${{ github.workspace }}/dist/Raindrop-amd64.snap"
-        release: stable
