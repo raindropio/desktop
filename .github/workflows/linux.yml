@@ -9,17 +9,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         submodules: 'recursive'
 
     - name: Install Snapcraft
       uses: samuelmeuli/action-snapcraft@v1
-    
+
     - name: Use Node.js 20.x
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v4
       with:
         node-version: 20.x
+
+    - name: Install Linux build dependencies
+      run: sudo apt-get update && sudo apt-get install -y rpm
 
     - name: install dependencies
       run: npm i
@@ -30,10 +33,20 @@ jobs:
         SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
       run: npm run build:linux -- --publish never
 
-    - name: publish amd64
+    - name: publish snap amd64
       uses: snapcore/action-publish@v1
       env:
         SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_EXPORT }}
       with:
         snap: "${{ github.workspace }}/dist/Raindrop-amd64.snap"
         release: stable
+
+    - name: Upload Linux artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: linux-builds
+        path: |
+          dist/*.deb
+          dist/*.rpm
+          dist/*.AppImage
+          dist/*.snap

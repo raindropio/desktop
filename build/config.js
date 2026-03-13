@@ -91,7 +91,24 @@ exports.default = ()=>({
         executableName: 'raindrop',
         icon: 'build/linux',
         category: 'GNOME;GTK;Network;Education;Science',
-        target: ['snap'],
+        target: [
+            {
+                target: 'deb',
+                arch: ['x64', 'arm64']
+            },
+            {
+                target: 'rpm',
+                arch: ['x64', 'arm64']
+            },
+            {
+                target: 'AppImage',
+                arch: ['x64', 'arm64']
+            },
+            {
+                target: 'snap',
+                arch: ['x64']
+            }
+        ],
         desktop: {
             entry: {
                 StartupWMClass: 'Raindrop.io',
@@ -100,6 +117,15 @@ exports.default = ()=>({
         }
     },
 
+    deb: {
+        artifactName: 'Raindrop-${arch}.${ext}'
+    },
+    rpm: {
+        artifactName: 'Raindrop-${arch}.${ext}'
+    },
+    appImage: {
+        artifactName: 'Raindrop-${arch}.${ext}'
+    },
     snap: {
         artifactName: 'Raindrop-${arch}.${ext}'
     }
