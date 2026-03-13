@@ -38,7 +38,7 @@ jobs:
       env:
         SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_EXPORT }}
       with:
-        snap: "${{ github.workspace }}/dist/Raindrop-amd64.snap"
+        snap: "${{ github.workspace }}/dist/Raindrop-x64.snap"
         release: stable
 
     - name: Upload Linux artifacts
