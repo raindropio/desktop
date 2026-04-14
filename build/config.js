@@ -127,6 +127,7 @@ exports.default = ()=>({
         artifactName: 'Raindrop-${arch}.${ext}'
     },
     snap: {
-        artifactName: 'Raindrop-${arch}.${ext}'
+        artifactName: 'Raindrop-${arch}.${ext}',
+        publish: ['github']
     }
 })
