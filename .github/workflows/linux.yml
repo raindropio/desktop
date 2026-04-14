@@ -31,7 +31,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-      run: npm run build:linux -- --publish never
+      run: npm run build:linux -- --publish always
 
     # - name: publish snap amd64
     #   uses: snapcore/action-publish@v1
