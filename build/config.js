@@ -22,7 +22,7 @@ exports.default = ()=>({
         category: 'public.app-category.productivity',
         entitlements: 'build/mac/entitlements.mac.plist',
         entitlementsInherit: 'build/mac/entitlements.mac.plist',
-        icon: 'build/mac/icon.icns',
+        icon: 'build/mac/icon.icon',
         darkModeSupport: true,
         forceCodeSigning: true,
         artifactName: 'Raindrop.io-darwin-${arch}-${version}.${ext}',
@@ -34,6 +34,7 @@ exports.default = ()=>({
     dmg: {
         artifactName: 'Raindrop-${arch}.${ext}',
         background: 'build/mac/dmg@2x.png',
+        icon: 'build/mac/icon.icns',
         iconSize: 128,
         format: 'UDBZ',
         contents: [
