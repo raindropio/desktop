@@ -21,7 +21,11 @@ export default function deeplinkHandler(window) {
             if (process.platform === 'linux')
                 dialog.showMessageBoxSync(window.window, { message: 'Deeplink received!', type: 'none' })
 
-            window.setPath(url.replace(`${protocol}:/`, ''))
+            const deepLinkPath = url.replace(`${protocol}:/`, '')
+            // only allow safe app-relative paths, rejecting quotes/backticks/template syntax
+            // that could break out of the string context window.setPath() injects into
+            if (/^\/[\w\-./?=&%#]*$/.test(deepLinkPath))
+                window.setPath(deepLinkPath)
         }
     }
 
